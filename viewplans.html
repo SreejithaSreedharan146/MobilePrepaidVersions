@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recharge Packs</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=Raleway:400,700');
+
+        body {
+            font-family: Raleway, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        header {
+            background-color: #32336c;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 10px;
+            padding-bottom: 10px;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #32336c;
+            padding: 0.10rem 1rem;
+            padding-left: 337px;
+        }
+
+        .navbar a {
+            color: white;
+            padding: 0.6rem 0.8rem;
+            text-decoration: none;
+            text-align: center;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+            /* Smooth transition for hover effect */
+        }
+
+        .navbar a:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        #imgnav img {
+            width: 60px;
+        }
+
+        .container {
+            width: 100%;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            background-color: #fff;
+            max-width: 1200px;
+            /* Prevents excessive width on large screens */
+            margin: 0 auto;
+            /* Centers the container */
+            display: flex;
+            /* Use Flexbox to align sidebar and content */
+            overflow: hidden;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 24px;
+        }
+
+        .sidebar {
+            background-color: #92b2d7;
+            color: white;
+            padding: 20px;
+            width: 23.7%;
+            /* Adjusted width */
+            height: 300vh;
+            /* Make sidebar take full height */
+        }
+
+        .changenum {
+            border: 1px solid;
+            width: 250px;
+            border-radius: 5px;
+            background-color: #f2f2f2;
+            display: flex;
+            padding: 2px;
+            height: 11vh;
+            text-align: center;
+        }
+
+        #number {
+            padding-left: 5px;
+        }
+
+        #changenumbtn {
+            background-color: #32336c;
+            color: white;
+            border: none;
+            margin-left: 77px;
+            width: 70px;
+            padding-top: 2px;
+            margin-top: 13px;
+            height: 6vh;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 13px;
+            transition: background-color 0.3s;
+        }
+
+        #changenumbtn:hover {
+            background-color: #4e4f6d;
+        }
+
+        .search-container {
+            position: relative;
+            margin-bottom: 20px;
+        }
+
+        #searchInput {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+            box-sizing: border-box;
+            outline: none;
+            transition: border-color 0.3s ease;
+        }
+
+        #searchInput:focus {
+            border-color: #32336c;
+            /* Border color on focus */
+        }
+
+        #scrollToTopBtn {
+            display: none;
+            /* Initially hidden */
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #32336c;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s ease;
+        }
+
+        #scrollToTopBtn:hover {
+            background-color: #4e4f6d;
+        }
+
+        .recharge-options {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            margin-bottom: 20px;
+            overflow-x: auto;
+            /* Enable horizontal scrolling */
+            white-space: nowrap;
+            /* Prevent items from wrapping */
+        }
+
+        .recharge-options button {
+            background-color: #f0f0f0;
+            border: none;
+            padding: 8px 12px;
+            margin-right: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background-color 0.3s;
+        }
+
+        .recharge-options button.active {
+            background-color: #e0e0e0;
+        }
+
+        .recharge-pack {
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            background-color: #d4e6f5;
+            margin-bottom: 15px;
+            padding: 15px;
+            /*display: flex;
+            justify-content: space-between;
+            align-items: center;*/
+        }
+
+        .pack-details {
+            flex-grow: 1;
+            font-weight: bold;
+        }
+
+        .pack-details p {
+            margin: 10px 0;
+        }
+
+        .pack-action {
+            text-align: right;
+        }
+
+        .pack-action a {
+            text-decoration: none;
+            color: #669ed9;
+            font-weight: bold;
+        }
+
+        .red-banner {
+            background-image: linear-gradient(180deg, rgb(210, 61, 61), rgb(207, 29, 29));
+            color: white;
+            /* White text */
+            padding: 5px 10px;
+            /* Padding for spacing */
+            border-radius: 5px;
+            /* Rounded corners */
+            margin-right: 5px;
+            margin-bottom: 10px;
+            /* Space below the banner */
+            display: inline-block;
+            /* Adjust display as needed */
+        }
+
+        .rightsidecontent {
+            padding: 20px;
+            width: 70%;
+            /* Adjusted width */
+        }
+
+        #recharge-plans-container {
+            display: flex;
+            flex-direction: column;
+        }
+
+        #btns {
+            background-color: #32336c;
+            color: white;
+        }
+
+        #btns:hover {
+            background-color: #4e4f6d;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            margin: 50px;
+            left: 0;
+            top: 0;
+            width: 100%;
+            /* height: 100%;
+            background-color: rgba(0, 0, 0, 0.5); */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            position: relative;
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            width: 90%;
+            max-width: 500px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            animation: modalFadeIn 0.3s ease-out;
+        }
+
+        @keyframes modalFadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .close {
+            position: absolute;
+            right: 15px;
+            top: 10px;
+            font-size: 24px;
+            font-weight: bold;
+            color: #666;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .close:hover {
+            color: #000;
+        }
+
+        #rechargeNow {
+            background-color: #32336c;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 20px;
+            transition: background-color 0.3s ease;
+        }
+
+        #rechargeNow:hover {
+            background-color: #4e4f6d;
+        }
+
+        #planDetails {
+            margin: 20px 0;
+            font-size: 18px;
+            color: #333;
+        }
+    </style>
+    </style>
+</head>
+
+<body>
+    <header>
+        <a id="imgnav" href="page1.html"><img src="./logo-removebg-preview.png" alt="Company Logo"></a>
+        <div class="menu-icons">
+            <nav class="navbar">
+                <a href="Recharge(page2).html">Recharge</a>
+                <a href="#newsim">New prepaid sim</a>
+                <a href="#plans">View plans</a>
+                <a href="#roaming">International roaming</a>
+                <a href="#help">Help</a>
+            </nav>
+        </div>
+        <div class="user-icon">👤</div>
+    </header>
+    <div class="container">
+        <div class="sidebar">
+            <div class="changenum">
+                <p id="number" style="color: #32336c; font-weight: bold;">1234567890</p>
+                <button id="changenumbtn">Change</button>
+            </div>
+            <h2>Recharge Online</h2>
+            <p>Now you can recharge for <br>your favorite people</p>
+        </div>
+        <div class="rightsidecontent">
+            <div class="header">
+                <h1>Recharge Packs</h1>
+            </div>
+            <!-- search bar -->
+            <div class="search-container">
+                <input type="text" id="searchInput" placeholder="Enter the name of the plan">
+            </div>
+            <br>
+            <div class="recharge-options">
+                <button id="btns" class="active" data-filter="recommended">Popular Plans</button>
+                <button id="btns" data-filter="data">Data Plans</button>
+                <button id="btns" data-filter="validityplans">Validity Plans</button>
+                <button id="btns" data-filter="unlimitedplans">Unlimited Plans</button>
+                <!-- <button data-filter="monthlyplans">Monthly Plans</button> -->
+                <button id="btns" data-filter="super-savers">Super Savers</button>
+                <button id="btns" data-filter="app-exclusive">App exclusive benefits</button>
+            </div>
+            <div id="rechargeModal" class="modal">
+                <div class="modal-content">
+                    <span class="close">&times;</span>
+                    <h2>Recharge Plan Details</h2>
+                    <p id="planDetails">Unlimited Data Plan - ₹299</p>
+                    <button id="rechargeNow">Recharge Now</button>
+                </div>
+            </div>
+            <div id="recharge-plans-container">
+                <!-- Recharge packs will be dynamically added here -->
+            </div>
+
+            <button id="scrollToTopBtn">⬆️</button>
+        </div>
+
+    </div>
+    <script>
+        const rechargeOptions = document.querySelector('.recharge-options');
+        const plansContainer = document.getElementById('recharge-plans-container');
+
+        // Sample data (replace with your actual data source)
+        const plansData = {
+            recommended: [
+                { price: "₹49", data: "✅Unlimited data", validity: "✅1 day", detailsLink: "#" },
+                { price: "₹181", data: "✅15 GB data", validity: "✅20 days", detailsLink: "#", ott: true },
+                { price: "₹181", data: "✅12 GB data", validity: "✅20 days", detailsLink: "#" },
+                { price: "₹409 unlimited call", data: "✅2.5 GB per day", validity: "✅20 days", ott: true, detailsLink: "#", newMins: true },
+                { price: "₹649 unlimited call", data: "✅2 GB per day", validity: "✅55 days", unlimited5G: true, detailsLink: "#", monthly: true },
+                { price: "₹979 unlimited call", data: "✅2 GB per day", validity: "✅84 days", ott: true, detailsLink: "#", monthly: true },
+                { price: "₹249 unlimited call", data: "✅2 GB per day", validity: "✅20 days", spamFighting: true, detailsLink: "#", summer: true }
+            ],
+            data: [
+                { price: "₹19", data: "✅1 GB data", validity: "✅1 day", detailsLink: "#", less: true },
+                { price: "₹48", data: "✅3 GB data", validity: "✅28 days", detailsLink: "#" },
+                { price: "₹99", data: "✅5 GB data", validity: "✅56 days", detailsLink: "#" }
+            ],
+            validityplans: [
+                { price: "₹699", data: "✅1.5 GB per day", validity: "✅56 days", detailsLink: "#", ott: false },
+                { price: "₹799", data: "✅2.5 GB  per day", validity: "✅56 days", detailsLink: "#", ott: false },
+                { price: "₹849", data: "✅1.5 GB  per day", validity: "✅84 days", detailsLink: "#", ott: true },
+                { price: "₹949", data: "✅2.5 GB  per day", validity: "✅84 days", detailsLink: "#", ott: true },
+                { price: "₹2399", data: "✅1.5 GB  per day", validity: "✅365 days", detailsLink: "#", ott: true }
+            ],
+            unlimitedplans: [
+                { price: "₹499", data: "✅Unlimited data", validity: "✅28 days", detailsLink: "#", unlimited5G: true },
+                { price: "₹999", data: "✅Unlimited data", validity: "✅56 days", detailsLink: "#", unlimited5G: true },
+                { price: "₹1499", data: "✅Unlimited data", validity: "✅84 days", detailsLink: "#", unlimited5G: true },
+                { price: "₹2499", data: "✅Unlimited data", validity: "✅365 days", detailsLink: "#", unlimited5G: true }
+            ],
+            // monthlyplans: [
+            //     { price: "₹199", data: "✅2 GB data", validity: "✅28 days", detailsLink: "#", monthly: true },
+            //     { price: "₹399", data: "✅5 GB data", validity: "✅56 days", detailsLink: "#", monthly: true },
+            //     { price: "₹599", data: "✅10 GB data", validity: "✅84 days", detailsLink: "#", monthly: true },
+            //     { price: "₹799", data: "✅15 GB data", validity: "✅365 days", detailsLink: "#", monthly: true }
+            // ],
+            "super-savers": [
+                { price: "₹29", data: "✅2 GB data", validity: "✅3 days", detailsLink: "#" }
+            ],
+            "app-exclusive": [
+                { price: "₹299", data: "✅2 GB/day", validity: "✅30 days", detailsLink: "#", appExclusive: true }
+            ]
+        };
+        function displayPlans(filter) {
+            plansContainer.innerHTML = ''; // Clear existing plans
+
+            if (plansData[filter]) {
+                plansData[filter].forEach(plan => {
+                    const packDiv = document.createElement('div');
+                    packDiv.classList.add('recharge-pack');
+
+                    let detailsHTML = ``;
+                    if (plan.less) {
+                        detailsHTML += `<div class="red-banner">Most used</div>`
+                    }
+                    if (plan.ott) {
+                        detailsHTML += `<div class="red-banner">Free otts</div>`
+                    }
+                    if (plan.newMins) {
+                        detailsHTML += `<div class="red-banner">New mins unlimited call</div>`
+                    }
+                    if (plan.unlimited5G) {
+                        detailsHTML += `<div class="red-banner">Unlimited 5G Data</div>`
+                    }
+                    if (plan.monthly) {
+                        detailsHTML += `<div class="red-banner">Only-rs.329/month</div>`
+                    }
+                    if (plan.spamFighting) {
+                        detailsHTML += `<div class="red-banner">India's Lat Spam Fighting Network</div>`
+                    }
+                    if (plan.summer) {
+                        detailsHTML += `<div class="red-banner">summer</div>`
+                    }
+                    if (plan.appExclusive) {
+                        detailsHTML += `<div class="red-banner">App Exclusive</div>`
+                    }
+                    detailsHTML += `
+                    <div class="pack-details">
+                        <p>${plan.price}</p>
+                        <p>${plan.data}</p>
+                    </div>
+                    <div class="pack-details">
+                        <p>${plan.validity} validity</p>
+                    </div>
+                    <div class="pack-action">
+                        <a href="${plan.detailsLink}">View Details</a>
+                    </div>
+                `;
+
+                    packDiv.innerHTML = detailsHTML;
+                    plansContainer.appendChild(packDiv);
+                });
+            } else {
+                plansContainer.innerHTML = '<p>No plans found for this category.</p>';
+            }
+        }
+
+        // Initial display (Recommended Packs)
+        displayPlans('recommended');
+        rechargeOptions.addEventListener('click', function (e) {
+            if (e.target.tagName === 'BUTTON') {
+                // Remove active class from currently active button
+                const currentActive = document.querySelector('.recharge-options button.active');
+                if (currentActive) {
+                    currentActive.classList.remove('active');
+                }
+
+                // Add active class to the clicked button
+                e.target.classList.add('active');
+
+                const filter = e.target.dataset.filter;
+                displayPlans(filter);
+            }
+        });
+
+
+
+        const searchInput = document.getElementById('searchInput');
+        const scrollToTopBtn = document.getElementById('scrollToTopBtn');
+
+        searchInput.addEventListener('input', function () {
+            const filter = document.querySelector('.recharge-options button.active').dataset.filter;
+            displayPlans(filter, searchInput.value); // Redisplay plans based on search term
+        });
+
+        // Scroll to Top button functionality
+        window.onscroll = function () {
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                scrollToTopBtn.style.display = "block";
+            } else {
+                scrollToTopBtn.style.display = "none";
+            }
+        };
+
+        scrollToTopBtn.addEventListener('click', function () {
+            document.body.scrollTop = 0; // For Safari
+            document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+        });
+
+
+        const modal = document.getElementById("rechargeModal");
+        const closeModal = document.querySelector(".close");
+        const rechargeNow = document.getElementById("rechargeNow");
+
+        // Open modal when clicking a recharge pack
+        const rechargePacks = document.querySelectorAll(".recharge-pack");
+        rechargePacks.forEach(pack => {
+            pack.addEventListener("click", function () {
+                document.getElementById("planDetails").textContent = this.textContent;
+                modal.style.display = "block";
+            });
+        });
+
+        // Close modal when clicking the close button
+        closeModal.addEventListener("click", function () {
+            modal.style.display = "none";
+        });
+
+        // Close modal if clicking outside the content
+        window.addEventListener("click", function (event) {
+            if (event.target === modal) {
+                modal.style.display = "none";
+            }
+        });
+
+        // Recharge button functionality
+        rechargeNow.addEventListener("click", function () {
+            alert("Recharge successful!");
+            modal.style.display = "none";
+        });
+    </script>
+</body>
+
+</html>

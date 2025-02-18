@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=Raleway:400,700');
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Raleway, sans-serif;
+        }
+
+        body {
+            background: #e9e4fb;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            
+        }
+
+        .container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+        }
+
+        .screen {
+            background: #32336c;
+            position: relative;
+            width: 500px;
+            border-radius: 15px;
+            box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .screen__content {
+            position: relative;
+            height: 100%;
+            padding: 40px;
+        }
+
+        .login {
+            width: 100%;
+            padding-top: 20px;
+        }
+
+        .login__field {
+            padding: 15px 15px;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .login__icon {
+            position: absolute;
+            top: 25px;
+            color: #FFF;
+        }
+
+        .login__input {
+            border: none;
+            border-bottom: 2px solid #FFF;
+            background: none;
+            padding: 10px;
+            padding-left: 30px;
+            font-weight: 700;
+            width: 85%;
+            color: #FFF;
+            transition: .2s;
+        }
+
+        .login__input::placeholder {
+            color: #FFF;
+        }
+
+        .login__input:focus {
+            outline: none;
+            border-bottom-color: #C0C0C0;
+        }
+
+        .login__submit {
+            background: #FFF;
+            font-size: 14px;
+            margin-top: 20px;
+            padding: 12px 20px;
+            border-radius: 26px;
+            border: 1px solid #C0C0C0;
+            text-transform: uppercase;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            width: 100%;
+            color: #E40046;
+            cursor: pointer;
+            transition: .2s;
+        }
+
+        .login__submit:hover {
+            background: #C0C0C0;
+            color: #000;
+        }
+
+        .button__icon {
+            font-size: 20px;
+            margin-left: auto;
+            color: #E40046;
+        }
+
+        .toggle-buttons {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 20px;
+        }
+
+        .toggle-buttons button {
+            background: #A0A0A0;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            border-radius: 5px;
+            color: #000;
+            transition: .3s;
+        }
+
+        .toggle-buttons button.active {
+            background: #FFF;
+            color: #E40046;
+        }
+
+        @media (max-width: 480px) {
+            .screen {
+                width: 90%;
+                max-width: 350px;
+            }
+
+            .login__input {
+                font-size: 14px;
+                padding-left: 30px;
+            }
+
+            .login__icon {
+                font-size: 16px;
+                top: 15px;
+            }
+
+            .login__submit {
+                font-size: 12px;
+                padding: 10px;
+            }
+
+            .toggle-buttons button {
+                font-size: 12px;
+                padding: 8px 15px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="screen">
+            <div class="screen__content">
+                <div class="toggle-buttons">
+                    <button id="userBtn" class="active" onclick="toggleForm('user')">User</button>
+                    <button id="adminBtn" onclick="toggleForm('admin')">Admin</button>
+                </div>
+                <form class="login">
+                    <!-- Mobile Number / Admin ID -->
+                    <div class="login__field">
+                        <i class="login__icon fas fa-user"></i>
+                        <input type="text" id="userid" class="login__input" placeholder="Mobile Number"
+                            oninput="validateMobile()">
+                    </div>
+
+                    <!-- Email for Users -->
+                    <div class="login__field" id="emailField">
+                        <i class="login__icon fas fa-envelope"></i>
+                        <input type="email" id="email" class="login__input" placeholder="Email"
+                            oninput="validateEmail()">
+                    </div>
+
+                    <!-- Password for Admins -->
+                    <div class="login__field" id="passwordField" style="display: none;">
+                        <i class="login__icon fas fa-lock"></i>
+                        <input type="password" id="password" class="login__input" placeholder="Password">
+                    </div>
+
+                    <button type="button" class="login__submit" onclick="validateLogin()">
+                        <span class="button__text">Log In</span>
+                        <i class="button__icon fas fa-chevron-right"></i>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script>
+        function toggleForm(role) {
+            document.getElementById('userBtn').classList.remove('active');
+            document.getElementById('adminBtn').classList.remove('active');
+            document.getElementById(role + 'Btn').classList.add('active');
+
+            const inputField = document.getElementById('userid');
+            const emailField = document.getElementById('emailField');
+            const passwordField = document.getElementById('passwordField');
+
+            inputField.value = ''; // Clear input
+            document.getElementById('email').value = ''; // Clear email
+            document.getElementById('password').value = ''; // Clear password
+
+            if (role === 'user') {
+                inputField.placeholder = 'Mobile Number';
+                emailField.style.display = 'block';
+                passwordField.style.display = 'none';
+            } else {
+                inputField.placeholder = 'Admin ID';
+                emailField.style.display = 'none';
+                passwordField.style.display = 'block';
+            }
+        }
+
+        function validateMobile() {
+            const mobileInput = document.getElementById('userid').value;
+            const mobileRegex = /^[6-9]\d{9}$/; // Validates Indian mobile numbers
+            document.getElementById('userid').style.borderBottom = mobileRegex.test(mobileInput) ? '2px solid #FFF' : '2px solid red';
+        }
+
+        function validateEmail() {
+            const emailInput = document.getElementById('email').value;
+            const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+            document.getElementById('email').style.borderBottom = emailRegex.test(emailInput) ? '2px solid #FFF' : '2px solid red';
+        }
+
+        function validateLogin() {
+            const role = document.getElementById('userBtn').classList.contains('active') ? 'user' : 'admin';
+            const inputField = document.getElementById('userid').value.trim();
+
+            if (role === 'user') {
+                const email = document.getElementById('email').value.trim();
+                if (!/^[6-9]\d{9}$/.test(inputField) || !/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(email)) {
+                    alert('Invalid Mobile Number or Email');
+                    return;
+                }
+                alert('User login successful');
+            } else {
+                const password = document.getElementById('password').value.trim();
+                if (inputField !== 'Admin123' || password !== 'adminpass') {
+                    alert('Invalid Admin Credentials');
+                    return;
+                }
+                alert('Admin login successful');
+            }
+        }
+    </script>
+</body>
+
+</html>

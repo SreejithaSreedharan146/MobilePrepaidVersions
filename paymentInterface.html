@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mobi-Comm Payment</title>
+    <style>
+                @import url('https://fonts.googleapis.com/css?family=Raleway:400,700');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Raleway, sans-serif;
+        }
+
+        body {
+            background-color: #f0f0f0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .header {
+            background-color: #32336c;
+            padding: 15px 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            z-index: 1000;
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #00a8e8, #0077cc);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+
+        .company-name {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #ffffff;
+        }
+
+        .main-container {
+            flex: 1;
+            background-color: #fff;
+            width: 100%;
+        }
+
+        .payment-container {
+            height: 100%;
+            max-width: 500px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .payment-summary {
+            background-color: #e8f4f4;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+
+        .prepaid-number {
+            color: #333;
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+        }
+
+        .data-details {
+            color: #666;
+            font-size: 0.85rem;
+            margin-bottom: 15px;
+        }
+
+        .amount {
+            display: flex;
+            justify-content: space-between;
+            padding-top: 10px;
+            border-top: 1px solid #ccc;
+            font-weight: bold;
+        }
+
+        .payment-option {
+            background-color: #f5f5f5;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            overflow: hidden;
+        }
+
+        .payment-option-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .option-left {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .arrow {
+            transition: transform 0.3s ease;
+        }
+
+        .payment-option.active {
+            background-color: #fff;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .payment-option.active .arrow {
+            transform: rotate(180deg);
+        }
+
+        .payment-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+
+        .payment-option.active .payment-content {
+            max-height: 200px;
+            margin-top: 15px;
+        }
+
+        .upi-options {
+            display: flex;
+            gap: 15px;
+            padding: 10px 0;
+            flex-wrap: wrap;
+        }
+
+        .upi-option {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .upi-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 0.8rem;
+            transition: transform 0.2s ease;
+        }
+
+        .upi-icon:hover {
+            transform: scale(1.1);
+        }
+
+        .upi-name {
+            font-size: 0.8rem;
+            color: #666;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header-content {
+                padding: 10px;
+            }
+
+            .logo {
+                width: 32px;
+                height: 32px;
+            }
+
+            .company-name {
+                font-size: 1rem;
+            }
+
+            .payment-container {
+                padding: 15px;
+            }
+
+            .upi-options {
+                gap: 10px;
+            }
+
+            .upi-icon {
+                width: 35px;
+                height: 35px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .header {
+                padding: 10px;
+            }
+
+            .company-name {
+                font-size: 0.9rem;
+            }
+
+            .payment-container {
+                padding: 10px;
+            }
+
+            .payment-option {
+                padding: 12px;
+            }
+
+            .upi-options {
+                gap: 8px;
+            }
+
+            .upi-icon {
+                width: 30px;
+                height: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="header-content">
+            <div class="logo-container">
+                <div class="logo">
+                    <img src="./logo-removebg-preview.png" alt="Company Logo" width="40" height="40">
+                </div>
+                <span class="company-name">Mobi-Comm services ltd</span>
+            </div>
+        </div>
+    </header>
+
+    <div class="main-container">
+        <div class="payment-container">
+            <div class="payment-summary">
+                <div class="prepaid-number">prepaid | 1234567890</div>
+                <div class="data-details">
+                    1 day validity • Unlimited data
+                </div>
+                <div class="amount">
+                    <span>Amount payable</span>
+                    <span>₹19</span>
+                </div>
+            </div>
+
+            <div class="payment-options">
+                <!-- Payment options will be dynamically added here -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const paymentOptions = [
+            {
+                id: 'card',
+                title: 'Credit/Debit/ATM card',
+                icon: '💳'
+            },
+            {
+                id: 'netbanking',
+                title: 'Net banking',
+                icon: '🏦'
+            },
+            {
+                id: 'upi',
+                title: 'UPI',
+                icon: '📱',
+                options: [
+                    { name: 'Airtel', color: '#ff0000' },
+                    { name: 'Gpay', color: '#4285f4' },
+                    { name: 'Paytm', color: '#00b9f1' },
+                    { name: 'PhonePe', color: '#5f259f' },
+                    { name: 'Amazon Pay', color: '#ff9900' }
+                ]
+            },
+            {
+                id: 'wallets',
+                title: 'Wallets',
+                icon: '👛'
+            }
+        ];
+
+        const paymentOptionsContainer = document.querySelector('.payment-options');
+
+        paymentOptions.forEach(option => {
+            const optionElement = document.createElement('div');
+            optionElement.className = 'payment-option';
+            optionElement.innerHTML = `
+                <div class="payment-option-header">
+                    <div class="option-left">
+                        <span>${option.icon}</span>
+                        <span>${option.title}</span>
+                    </div>
+                    <span class="arrow">▼</span>
+                </div>
+                <div class="payment-content">
+                    ${option.id === 'upi' ? `
+                        <div class="upi-options">
+                            ${option.options.map(upiOption => `
+                                <div class="upi-option">
+                                    <div class="upi-icon" style="background-color: ${upiOption.color}">
+                                        ${upiOption.name.charAt(0)}
+                                    </div>
+                                    <span class="upi-name">${upiOption.name}</span>
+                                </div>
+                            `).join('')}
+                        </div>
+                    ` : '<div>Content for ' + option.title + '</div>'}
+                </div>
+            `;
+
+            paymentOptionsContainer.appendChild(optionElement);
+        });
+
+        document.querySelectorAll('.payment-option').forEach(option => {
+            option.addEventListener('click', () => {
+                const wasActive = option.classList.contains('active');
+                
+                // Close all options
+                document.querySelectorAll('.payment-option').forEach(opt => {
+                    opt.classList.remove('active');
+                });
+
+                // Toggle clicked option
+                if (!wasActive) {
+                    option.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

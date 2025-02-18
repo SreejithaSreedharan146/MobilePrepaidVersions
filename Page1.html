@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="./titlelogo.png">
+    <title>Mobile Recharge</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css">
+
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=Raleway:400,700');
+        body {
+            font-family: Raleway, sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            background-color: #f0e0e0;
+            line-height: 1.6; /* Improves text readability */
+        }
+
+        .container {
+            background-color: #fff;
+            max-width: 1200px; /* Prevents excessive width on large screens */
+            margin: 0 auto; /* Centers the container */
+            overflow: hidden; /* Prevents content from overflowing */
+        }
+
+        header {
+            background-color: #32336c;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.5rem;
+        }
+
+        /* Navigation Bar */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #32336c;
+            padding: 0.5rem 1rem;
+        }
+
+        .navbar a {
+            color: white;
+            padding: 0.5rem 0.8rem;
+            text-decoration: none;
+            text-align: center;
+            border-radius: 5px;
+            transition: background-color 0.3s ease; /* Smooth transition for hover effect */
+        }
+
+        .navbar a:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .menu-icons {
+            display: flex;
+            margin-left: auto; /* Push icons to the right */
+            align-items: center; /* Vertically center items */
+        }
+
+        .menu-icons span {
+            width: auto;
+            padding: 0.3rem 0.6rem;
+            font-size: 0.7rem;
+            background-color: #fff;
+            border-radius: 20px;
+            margin-right: 0.3rem;
+            display: block; /* Ensures proper spacing */
+        }
+
+        .user-icon {
+            font-size: 1.5rem;
+            color: white;
+            margin-left: 1rem; /* Add spacing between icons */
+        }
+        #imgnav img {
+            width: 60px;
+        }
+
+        /* Swiper Carousel */
+        .swiper {
+            width: 100%;
+            height: 300px;
+        }
+
+        .swiper-slide img {
+            width: 50%;
+            height: auto;
+            object-fit: cover;
+            display: block;
+            margin: 40px auto; /* Center images */
+        }
+
+        h2,
+        h3 {
+            margin-left: 1rem;
+        }
+
+        /* Recharge Form */
+        .recharge-form {
+            margin: 1rem auto;
+            padding: 1rem;
+            border: black solid 1px;
+            border-radius: 20px;
+            max-width: 600px; /* Limit form width */
+        }
+
+        .recharge-form h5 {
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 0.7rem;
+            margin-bottom: 1rem;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box; /* Include padding and border in element's total width and height */
+        }
+
+        button.recharge-btn {
+            background-color: #32336c;;
+            color: white;
+            border: none;
+            border-radius: 20px;
+            padding: 0.7rem 1.3rem;
+            cursor: pointer;
+            width: auto; /* Adjust width to content */
+            display: block;
+            margin: 0 auto; /* Center the button */
+            transition: background-color 0.3s ease; /* Smooth transition for hover effect */
+        }
+
+        button.recharge-btn:hover {
+            background-color: #4e4f6d;
+        }
+
+        /* Ad Space */
+        .ad-space {
+            margin: 1rem;
+        }
+
+        .ad-space video {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* Switch Section */
+        .switch-section {
+            margin: 1rem auto;
+            padding: 1rem;
+            border: black solid 1px;
+            border-radius: 20px;
+            max-width: 600px; /* Limit section width */
+            text-align: center;
+        }
+
+        button.get-started-btn {
+            background-color: #32336c;;
+            color: white;
+            border: none;
+            border-radius: 20px;
+            padding: 0.7rem 1.3rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease; /* Smooth transition for hover effect */
+        }
+
+        button.get-started-btn:hover {
+            background-color: #4e4f6d;
+        }
+
+        /* Recommended Ads */
+        .recommended-ads {
+            display: flex;
+            flex-wrap: wrap; /* Allow items to wrap to the next line */
+            justify-content: space-around;
+            gap: 1rem;
+            padding: 1rem;
+        }
+
+        .card {
+            background-color: #fff;
+            border-radius: 10px;
+            padding: 1rem;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            flex: 1 1 300px; /* Distribute available space, initial size of 300px */
+            min-width: 250px; /* Minimum width for cards */
+        }
+
+        .card-img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+
+        .card-title {
+            margin: 0.7rem 0;
+            font-size: 1.1rem;
+            font-weight: bold;
+        }
+
+        .card-desc {
+            font-size: 0.9rem;
+            color: #555;
+            margin-bottom: 0.7rem;
+        }
+
+        button.card-btn {
+            background-color: #32336c;;
+            color: white;
+            border: none;
+            border-radius: 20px;
+            padding: 0.5rem 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease; /* Smooth transition for hover effect */
+        }
+
+        button.card-btn:hover {
+            background-color: #4e4f6d;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #32336c;
+            color: white;
+            padding: 0.7rem;
+            display: flex;
+            flex-wrap: wrap; /* Allows buttons to wrap on smaller screens */
+            justify-content: space-around; /* Distributes buttons evenly */
+            gap: 0.5rem; /* Adds spacing between buttons */
+        }
+
+        footer button {
+            background-color: transparent;
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s ease; /* Smooth transition for hover effect */
+        }
+
+        footer button:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        footer:last-of-type {
+            text-align: center;
+            padding-left: 0;
+        }
+
+        /* Media Queries for Responsiveness */
+        @media (max-width: 768px) {
+            /* Adjustments for smaller screens */
+            header {
+                flex-direction: column; /* Stack header elements vertically */
+                text-align: center;
+            }
+
+            .menu-icons {
+                margin-left: 0; /* Reset margin */
+                width: 100%; /* Take full width */
+                justify-content: center; /* Center the icons */
+            }
+
+            .navbar {
+                flex-direction: column; /* Stack nav links vertically */
+                align-items: stretch; /* Stretch links to fill the width */
+            }
+
+            .navbar a {
+                padding: 0.7rem;
+                text-align: center;
+            }
+
+            .swiper-slide img {
+                width: 90%; /* Make images larger */
+                margin: 20px auto;
+            }
+
+            .recharge-form {
+                padding: 0.7rem;
+                margin: 0.7rem;
+            }
+
+            .switch-section {
+                padding: 0.7rem;
+                margin: 0.7rem;
+            }
+
+            .recommended-ads {
+                flex-direction: column; /* Stack cards vertically */
+            }
+
+            .card {
+                min-width: auto; /* Allow cards to take full width */
+            }
+
+            footer {
+                flex-direction: column; /* Stack footer buttons vertically */
+                align-items: center; /* Center the buttons */
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <a id="imgnav" href="page1.html"><img src="./logo-removebg-preview.png" alt="Company Logo"></a>
+            <div class="menu-icons">
+                <nav class="navbar">
+                    <a href="Recharge(page2).html">Recharge</a>
+                    <a href="#newsim">New prepaid sim</a>
+                    <a href="viewplans.html">View plans</a>
+                    <a href="#roaming">International roaming</a>
+                    <a href="#help">Help</a>
+                </nav>
+            </div>
+            <div class="user-icon">👤</div>
+        </header>
+        <br>
+        <!-- Swiper Carousel -->
+        <div class="swiper mySwiper">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide"><img src="./internationroaming.png" alt="Slide 1"></div>
+                <div class="swiper-slide"><img src="./Yourpayments.png" alt="Slide 2"></div>
+                <div class="swiper-slide"><img src="./Offer.png" alt="Slide 3"></div>
+            </div>
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-pagination"></div>
+        </div>
+        <br><br><br>
+        <div class="recharge-form">
+            <h5>Recharge (prepaid)</h5>
+            <input type="text" id="mobileNumber" placeholder="Enter mobile number"><br>
+            <button class="recharge-btn">Recharge</button>
+        </div>
+
+        <div class="ad-space">
+            <video src="./Switch to mobi-comm video.mp4" autoplay loop muted></video>
+        </div>
+
+        <div class="switch-section">
+            <h5>Switch to Mobi-comm</h5>
+            <button class="get-started-btn">Get started</button>
+        </div>
+
+        <h3>Recommended for you !!!</h3>
+
+        <div class="recommended-ads">
+            <div class="ad card">
+                <img src="https://images.pexels.com/photos/789822/pexels-photo-789822.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+                    alt="Ad Image 1" class="card-img">
+                <h4 class="card-title">Special Offer 1</h4>
+                <p class="card-desc">Get 20% off on your next recharge!</p>
+                <button class="card-btn">Claim Now</button>
+            </div>
+
+            <div class="ad card">
+                <img src="https://images.pexels.com/photos/5791697/pexels-photo-5791697.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+                    alt="Ad Image 2" class="card-img">
+                <h4 class="card-title">Exclusive Plan</h4>
+                <p class="card-desc">Unlimited calls & 5GB data for just ₹10!</p>
+                <button class="card-btn">Get Plan</button>
+            </div>
+
+            <div class="ad card">
+                <img src="https://images.pexels.com/photos/6787890/pexels-photo-6787890.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+                    alt="Ad Image 3" class="card-img">
+                <h4 class="card-title">New Connection</h4>
+                <p class="card-desc">Switch to our network and enjoy the benefits.</p>
+                <button class="card-btn">Switch Now</button>
+            </div>
+        </div>
+        <br>
+    </div>
+    <footer>
+        <button id="btns" onclick="window.location.href='PrivacyPolicy.html'">Privacy Policy</button>
+        <button id="btns" onclick="window.location.href='TermsAndCondition.html'">Terms & Conditions</button>
+        <button id="btns" onclick="window.location.href='ContactUs.html'">Contact Us</button>
+        <button id="btns" onclick="window.location.href='AboutUs.html'">About Us</button>
+        <button id="btns" onclick="window.location.href='Help.html'">Help</button>
+        <button id="btns" onclick="window.location.href='Feedback.html'">Feedback</button>
+    </footer>
+    <footer style="padding-left: 0; text-align: center;">&copy; 2025 Mobi-comm.com. All Rights Reserved.</footer>
+
+    <!-- SwiperJS Script -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Initialize Swiper
+            var swiper = new Swiper(".mySwiper", {
+                loop: true,
+                autoplay: {
+                    delay: 1500
+                },
+                pagination: {
+                    el: ".swiper-pagination",
+                    clickable: true
+                },
+                navigation: {
+                    nextEl: ".swiper-button-next",
+                    prevEl: ".swiper-button-prev"
+                }
+            });
+
+            // Recharge Button Event
+            document.querySelector('.recharge-btn').addEventListener('click', function () {
+                const mobileNumber = document.querySelector('#mobileNumber').value;
+                if (mobileNumber) {
+                    alert(`Recharge initiated for ${mobileNumber}`);
+                } else {
+                    alert('Please enter a mobile number');
+                }
+            });
+
+            // Get Started Button Event
+            document.querySelector('.get-started-btn').addEventListener('click', function () {
+                alert('Switching to Mobi comm...');
+            });
+        });
+    </script>
+</body>
+
+</html>

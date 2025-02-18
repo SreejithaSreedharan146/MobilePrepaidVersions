@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="./titlelogo.png">
+    <title>Mobile Recharge</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css">
+</head>
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=Raleway:400,700');
+        body {
+            font-family: Raleway, sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            background-color: #ffffff;
+            line-height: 1.6; /* Improves text readability */
+        }
+
+        .container {
+            background-color: #fff;
+            max-width: 1200px; /* Prevents excessive width on large screens */
+            margin: 0 auto; /* Centers the container */
+            overflow: hidden; /* Prevents content from overflowing */
+        }
+
+        header {
+            background-color: #32336c;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.5rem;
+        }
+
+        /* Navigation Bar */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #32336c;
+            padding: 0.5rem 1rem;
+        }
+
+        .navbar a {
+            color: white;
+            padding: 0.5rem 0.8rem;
+            text-decoration: none;
+            text-align: center;
+            border-radius: 5px;
+            transition: background-color 0.3s ease; /* Smooth transition for hover effect */
+        }
+
+        .navbar a:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .menu-icons {
+            display: flex;
+            margin-left: auto; /* Push icons to the right */
+            align-items: center; /* Vertically center items */
+        }
+
+        .menu-icons span {
+            width: auto;
+            padding: 0.3rem 0.6rem;
+            font-size: 0.7rem;
+            background-color: #fff;
+            border-radius: 20px;
+            margin-right: 0.3rem;
+            display: block; /* Ensures proper spacing */
+        }
+
+        .user-icon {
+            font-size: 1.5rem;
+            color: white;
+            margin-left: 1rem; /* Add spacing between icons */
+        }
+        #imgnav img {
+            width: 60px;
+        }
+        .recharge-container {
+            display: flex;
+            border: 1px solid #ccc;
+            height: 85vh;
+        }
+
+        .sidebar {
+            background-color: #92b2d7;
+            color: white;
+            padding: 20px;
+            width: 23.6%;
+        }
+
+        .main-content {
+            padding: 20px;
+            width: 70%;
+        }
+
+        .breadcrumbs {
+            font-size: 0.8em;
+            color: #777;
+            margin-bottom: 10px;
+        }
+
+        .mobile-number-input {
+            width: 50%;
+            padding: 10px;
+            margin-top: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+       .mobile-number-input:hover{
+        box-shadow: #418ce3 0px 0px 0px 2px;
+       }
+       
+        p {
+            font-size: 0.9em;
+            color: #32336c;
+            margin-bottom: 20px;
+        }
+</style>
+<body>
+    <div class="container">
+        <header>
+            <a id="imgnav" href="Page1.html"><img src="./logo-removebg-preview.png" alt="Company Logo"></a>
+            <div class="menu-icons">
+                <nav class="navbar">
+                    <a href="Recharge(page2).html">Recharge</a>
+                    <a href="#newsim">New prepaid sim</a>
+                    <a href="viewplans.html">View plans</a>
+                    <a href="#roaming">International roaming</a>
+                    <a href="#help">Help</a>
+                </nav>
+            </div>
+            <div class="user-icon">👤</div>
+        </header>
+        <div class="recharge-container">
+            <div class="sidebar">
+                <h2>Recharge Online</h2>
+                <p>Recharge on the go, no delays!</p>
+            </div>
+            <div class="main-content">
+                <div class="breadcrumbs"> <a href="Page1.html"> &lt;</a>  Recharge &gt; Prepaid</div>
+                <h1 style="color: #32336c;">Prepaid mobile recharge</h1>
+                <p>Validity, talktime, data – all in one recharge!</p>
+                <label for="mobileNumber" style="color: #32336c;">Mobile number</label><br>
+                <input type="text" id="mobileNumber" class="mobile-number-input" placeholder="Enter your 10-digit mobile number">
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - Mobi-Comm Services Ltd</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=Raleway:400,700');
+
+        body {
+            font-family: Raleway, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(120deg, #2C3E50, #34495E, #2E4053);
+            color: white;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 50px auto;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            color: #333;
+            transform: translateY(50px);
+            animation: fadeIn 1s ease-out forwards;
+        }
+
+        h1 {
+            color:#27274d;
+            text-align: center;
+        }
+
+        p {
+            line-height: 1.8;
+            color: #444;
+            text-align: center;
+        }
+
+        .branches {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+
+        .branch {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            width: 300px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            transform: scale(0.9);
+            transition: 0.3s;
+            margin: 10px;
+        }
+
+        .branch:hover {
+            transform: scale(1);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        iframe {
+            width: 85%;
+            height: 300px;
+            margin-left: 8%;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .contact-form {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        input, textarea {
+            width: 90%;
+            max-width: 500px;
+            padding: 12px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            outline: none;
+            transition: 0.3s;
+        }
+
+        input:focus, textarea:focus {
+            box-shadow: 0 0 10px #32336a;
+        }
+
+        button {
+            background: #27274d;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 18px;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            background: #8487c4;
+            box-shadow: 0 0 10px #606186;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 14px;
+            color: rgb(61, 59, 59);
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Contact Us</h1>
+        <p>Have questions? Reach out to us. We’re here to help!</p>
+
+        <h2 style="color:#27274d;; text-align:center;">Our Head Office</h2>
+        <div>
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14441.076181810575!2d55.26770523249857!3d25.194147808475858!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e5f682f700cf983%3A0xb5cc58b076c0b904!2sDowntown%20Dubai%20-%20Dubai%20-%20United%20Arab%20Emirates!5e0!3m2!1sen!2sin!4v1739692915051!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+
+        <h2 style="color:#27274d;; text-align:center;">Our Branches</h2>
+        <div class="branches">
+            <div class="branch">
+                <h3>Chennai Branch</h3>
+                <p>123 Anna Salai, Chennai, India</p>
+                <p>📞 +91 98765 43210</p>
+            </div>
+            <div class="branch">
+                <h3>London Branch</h3>
+                <p>221B Baker Street, London, UK</p>
+                <p>📞 +44 1234 567890</p>
+            </div>
+            <div class="branch">
+                <h3>New York Branch</h3>
+                <p>500 5th Ave, NY, USA</p>
+                <p>📞 +1 234 567 890</p>
+            </div>
+            <div class="branch">
+                <h3>Dubai Branch</h3>
+                <p>Business Bay, Dubai, UAE</p>
+                <p>📞 +971 50 9876543</p>
+            </div>
+            <div class="branch">
+                <h3>Tokyo Branch</h3>
+                <p>Shinjuku, Tokyo, Japan</p>
+                <p>📞 +81 3456 789012</p>
+            </div>
+            <div class="branch">
+                <h3>Melbourne Branch</h3>
+                <p>Collins St, Melbourne, Australia</p>
+                <p>📞 +61 3 9876 5432</p>
+            </div>
+        </div>
+
+        <h2 style="color:#32336a; text-align:center;">Get in Touch</h2>
+        <div class="contact-form">
+            <input type="text" placeholder="Your Name" required><br>
+            <input type="email" placeholder="Your Email" required><br>
+            <textarea rows="5" placeholder="Your Message"></textarea><br>
+            <button>Send Message</button>
+        </div>
+
+        <div class="footer">
+            &copy; 2025 Mobi-Comm Services Ltd. All rights reserved.
+        </div>
+    </div>
+
+</body>
+</html>
