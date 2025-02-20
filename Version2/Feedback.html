@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feedback - MobiCom Services Ltd</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=Raleway:400,700');
+
+        body {
+            font-family: Raleway, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(120deg, #2C3E50, #34495E, #2E4053);
+            color: white;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            color: #333;
+            animation: fadeIn 1s ease-out forwards;
+            text-align: center;
+        }
+
+        h1, h2 {
+            color: #32336a
+        }
+
+        p {
+            line-height: 1.8;
+            color: #444;
+        }
+
+        .stars {
+            display: flex;
+            justify-content: center;
+            margin: 15px 0;
+        }
+
+        .stars input {
+            display: none;
+        }
+
+        .stars label {
+            font-size: 30px;
+            color: gray;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .stars input:checked ~ label {
+            color: #309e4a;
+        }
+
+        .feedback-form {
+            margin-top: 20px;
+        }
+
+        textarea {
+            width: 100%;
+            padding: 10px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            resize: none;
+        }
+
+        button {
+            background: #272750;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: 0.3s;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background: #5a5a91;
+        }
+
+        .footer {
+            margin-top: 20px;
+            font-size: 14px;
+            color: rgb(123, 121, 121);
+            text-align: center;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>We Value Your Feedback!</h1>
+        <p>Let us know how we are doing and help us improve our services.</p>
+
+        <div class="section">
+            <h2>Rate Your Experience</h2>
+            <div class="stars">
+                <input type="radio" id="star5" name="rating" value="5"><label for="star5">&#9733;</label>
+                <input type="radio" id="star4" name="rating" value="4"><label for="star4">&#9733;</label>
+                <input type="radio" id="star3" name="rating" value="3"><label for="star3">&#9733;</label>
+                <input type="radio" id="star2" name="rating" value="2"><label for="star2">&#9733;</label>
+                <input type="radio" id="star1" name="rating" value="1"><label for="star1">&#9733;</label>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Share Your Feedback</h2>
+            <form class="feedback-form">
+                <textarea rows="5" placeholder="Tell us what you think..."></textarea><br>
+                <button type="submit">Submit Feedback</button>
+            </form>
+        </div>
+
+        <div class="footer">
+            &copy; 2025 Mobi-Comm Services Ltd. All rights reserved.
+        </div>
+    </div>
+
+</body>
+</html>

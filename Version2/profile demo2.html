@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mobile Prepaid Dashboard</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @keyframes slideIn {
+            from {
+                transform: translateY(30px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        @keyframes shimmer {
+            0% { background-position: -1000px 0; }
+            100% { background-position: 1000px 0; }
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --primary-color: #2563eb;
+            --secondary-color: #1d4ed8;
+            --background-color: #f1f5f9;
+            --card-color: #ffffff;
+            --text-color: #1f2937;
+            --animation-timing: 0.3s;
+        }
+
+        body {
+            background-color: var(--background-color);
+            opacity: 0;
+            animation: fadeIn 1s ease-out forwards;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Header Styles with Animation */
+        .header {
+            background-color: var(--card-color);
+            padding: 1rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            transform: translateY(-100%);
+            animation: slideIn 0.5s ease-out forwards;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .logo::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.8), transparent);
+            animation: shimmer 2s infinite;
+        }
+
+        .user-menu {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .user-menu i {
+            cursor: pointer;
+            transition: transform var(--animation-timing);
+        }
+
+        .user-menu i:hover {
+            transform: scale(1.2);
+        }
+
+        /* Dashboard Grid with Animations */
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .card {
+            background-color: var(--card-color);
+            border-radius: 0.5rem;
+            padding: 1.5rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            transition: transform var(--animation-timing), box-shadow var(--animation-timing);
+            animation: slideIn 0.5s ease-out forwards;
+            opacity: 0;
+        }
+
+        .card:nth-child(1) { animation-delay: 0.2s; }
+        .card:nth-child(2) { animation-delay: 0.4s; }
+        .card:nth-child(3) { animation-delay: 0.6s; }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+
+        /* Balance Card with Gradient Animation */
+        .balance-card {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .balance-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 200%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            animation: shimmer 3s infinite;
+        }
+
+        .balance-amount {
+            font-size: 2rem;
+            font-weight: bold;
+            margin: 1rem 0;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        /* Usage Stats with Progressive Loading */
+        .usage-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 1rem;
+            background-color: #f8fafc;
+            border-radius: 0.5rem;
+            transition: transform var(--animation-timing);
+        }
+
+        .stat-item:hover {
+            transform: scale(1.05);
+        }
+
+        /* Quick Actions with Hover Effects */
+        .quick-actions {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+            gap: 1rem;
+        }
+
+        .action-button {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 1rem;
+            background-color: #f8fafc;
+            border-radius: 0.5rem;
+            border: none;
+            cursor: pointer;
+            transition: all var(--animation-timing);
+        }
+
+        .action-button:hover {
+            transform: translateY(-5px);
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .action-button i {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            transition: transform var(--animation-timing);
+        }
+
+        .action-button:hover i {
+            transform: scale(1.2);
+        }
+
+        /* Chat Widget with Floating Animation */
+        .chat-widget {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background-color: var(--primary-color);
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            animation: float 3s ease-in-out infinite;
+            transition: transform var(--animation-timing);
+        }
+
+        .chat-widget:hover {
+            transform: scale(1.1);
+        }
+
+        /* Notification Badge Animation */
+        .notification-badge {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background-color: #ef4444;
+            color: white;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            animation: pulse 2s infinite;
+        }
+
+        /* Loading Progress Bar */
+        .progress-bar {
+            height: 4px;
+            width: 100%;
+            background-color: #e2e8f0;
+            border-radius: 2px;
+            overflow: hidden;
+            margin-top: 0.5rem;
+        }
+
+        .progress {
+            height: 100%;
+            background-color: var(--primary-color);
+            width: 0%;
+            transition: width 1s ease-out;
+        }
+
+        @media (max-width: 768px) {
+            .dashboard-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .header-content {
+                flex-direction: column;
+                gap: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">MobilePro</div>
+                <div class="user-menu">
+                    <div style="position: relative;">
+                        <i class="fas fa-bell"></i>
+                        <span class="notification-badge">3</span>
+                    </div>
+                    <i class="fas fa-user-circle"></i>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="dashboard-grid">
+            <!-- Balance Card -->
+            <div class="card balance-card">
+                <div class="card-header">
+                    <h2 class="card-title">Current Balance</h2>
+                    <i class="fas fa-sync-alt"></i>
+                </div>
+                <div class="balance-amount">₹235.50</div>
+                <div>Valid till: Mar 15, 2024</div>
+                <div class="progress-bar">
+                    <div class="progress" id="validityProgress"></div>
+                </div>
+            </div>
+
+            <!-- Active Plan -->
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="card-title">Active Plan</h2>
+                    <button class="action-button">Recharge</button>
+                </div>
+                <div class="usage-stats">
+                    <div class="stat-item">
+                        <i class="fas fa-wifi"></i>
+                        <div>15.5 GB / 40 GB</div>
+                        <div>Data Left</div>
+                        <div class="progress-bar">
+                            <div class="progress" id="dataProgress"></div>
+                        </div>
+                    </div>
+                    <div class="stat-item">
+                        <i class="fas fa-phone"></i>
+                        <div>Unlimited</div>
+                        <div>Calls</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quick Actions -->
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="card-title">Quick Actions</h2>
+                </div>
+                <div class="quick-actions">
+                    <button class="action-button">
+                        <i class="fas fa-sync"></i>
+                        <span>Recharge</span>
+                    </button>
+                    <button class="action-button">
+                        <i class="fas fa-chart-line"></i>
+                        <span>Usage</span>
+                    </button>
+                    <button class="action-button">
+                        <i class="fas fa-tag"></i>
+                        <span>Plans</span>
+                    </button>
+                    <button class="action-button">
+                        <i class="fas fa-history"></i>
+                        <span>History</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <div class="chat-widget">
+        <i class="fas fa-comments"></i>
+    </div>
+
+    <script>
+        // Animate progress bars on load
+        document.addEventListener('DOMContentLoaded', () => {
+            // Simulate data usage progress
+            const dataProgress = document.getElementById('dataProgress');
+            dataProgress.style.width = '38.75%'; // 15.5GB / 40GB
+
+            // Simulate validity progress
+            const validityProgress = document.getElementById('validityProgress');
+            const today = new Date();
+            const validTill = new Date('2024-03-15');
+            const totalDays = 30; // Assuming 30-day plan
+            const daysLeft = Math.ceil((validTill - today) / (1000 * 60 * 60 * 24));
+            const progressPercentage = ((totalDays - daysLeft) / totalDays) * 100;
+            validityProgress.style.width = progressPercentage + '%';
+        });
+
+        // Add loading animation to refresh button
+        document.querySelector('.fa-sync-alt').addEventListener('click', function() {
+            this.style.animation = 'spin 1s linear';
+            setTimeout(() => {
+                this.style.animation = '';
+                alert('Balance updated!');
+            }, 1000);
+        });
+
+        // Notification counter animation
+        let notificationCount = 3;
+        document.querySelector('.fa-bell').addEventListener('click', () => {
+            const badge = document.querySelector('.notification-badge');
+            if (notificationCount > 0) {
+                notificationCount = 0;
+                badge.style.animation = 'fadeOut 0.3s forwards';
+                setTimeout(() => badge.style.display = 'none', 300);
+            }
+        });
+
+        // Animate cards on scroll
+        const cards = document.querySelectorAll('.card');
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        cards.forEach(card => observer.observe(card));
+
+        // Quick action button effects
+        document.querySelectorAll('.action-button').forEach(button => {
+            button.addEventListener('click', (e) => {
+                const action = e.currentTarget.querySelector('span')?.textContent || 'Recharge';
+                e.currentTarget.style.transform = 'scale(0.95)';
+                setTimeout(() => {
+                    e.currentTarget.style.transform = '';
+                    alert(`${action} section will open here`);
+                }, 200);
+            });
+        });
+
+        // Chat widget interaction
+        const chatWidget = document.querySelector('.chat-widget');
+        chatWidget.addEventListener('click', () => {
+            chatWidget.style.transform = 'scale(0.95)';
+            setTimeout(() => {
+                chatWidget.style.transform = '';
+                alert('Customer support chat will open here');
+            }, 200);
+        });
+
+        // Add ripple effect to buttons
+        function createRipple(event) {
+            const button = event.currentTarget;
+            const ripple = document.createElement('span');
+            const rect = button.getBoundingClientRect();
+            
+            ripple.style.position = 'absolute';
+            ripple.style.borderRadius = '50%';
+            ripple.style.backgroundColor = 'rgba(255, 255, 255, 0.7)';
+            ripple.style.width = ripple.style.height = '20px';
+            ripple.style.transform = 'scale(0)';
+            ripple.style.left = `${event.clientX - rect.left - 10}px`;
+            ripple.style.top = `${event.clientY - rect.top - 10}px`;
+            ripple.style.animation = 'ripple 0.6s linear';
+            
+            button.appendChild(ripple);
+            
+            setTimeout(() => ripple.remove(), 600);
+        }
+
+        // Add ripple effect to all buttons
+        document.querySelectorAll('.action-button').forEach(button => {
+            button.style.position = 'relative';
+            button.style.overflow = 'hidden';
+            button.addEventListener('click', createRipple);
+        });
+
+        // Add floating animation to stat items
+        const statItems = document.querySelectorAll('.stat-item');
+        statItems.forEach((item, index) => {
+            item.style.animation = `float ${3 + index * 0.2}s ease-in-out infinite`;
+        });
+
+        // Add dynamic balance update animation
+        let currentBalance = 235.50;
+        function updateBalance(newBalance) {
+            const balanceElement = document.querySelector('.balance-amount');
+            const difference = newBalance - currentBalance;
+            const steps = 20;
+            const increment = difference / steps;
+            let currentStep = 0;
+
+            const animation = setInterval(() => {
+                currentBalance += increment;
+                balanceElement.textContent = `₹${currentBalance.toFixed(2)}`;
+                currentStep++;
+
+                if (currentStep >= steps) {
+                    clearInterval(animation);
+                    currentBalance = newBalance;
+                    balanceElement.textContent = `₹${newBalance.toFixed(2)}`;
+                }
+            }, 50);
+        }
+
+        // Add smooth scroll for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Add loading state for buttons
+        function setLoadingState(button) {
+            const originalContent = button.innerHTML;
+            button.innerHTML = '<i class="fas fa-spinner fa-spin"></i>';
+            button.disabled = true;
+            
+            setTimeout(() => {
+                button.innerHTML = originalContent;
+                button.disabled = false;
+            }, 2000);
+        }
+
+        document.querySelectorAll('.action-button').forEach(button => {
+            button.addEventListener('click', () => setLoadingState(button));
+        });
+
+        // Add notification system
+        function showNotification(message) {
+            const notification = document.createElement('div');
+            notification.className = 'notification';
+            notification.textContent = message;
+            notification.style.position = 'fixed';
+            notification.style.top = '20px';
+            notification.style.right = '20px';
+            notification.style.backgroundColor = 'var(--primary-color)';
+            notification.style.color = 'white';
+            notification.style.padding = '1rem';
+            notification.style.borderRadius = '0.5rem';
+            notification.style.boxShadow = '0 2px 4px rgba(0,0,0,0.2)';
+            notification.style.transform = 'translateX(100%)';
+            notification.style.transition = 'transform 0.3s ease-out';
+            
+            document.body.appendChild(notification);
+            
+            // Trigger animation
+            setTimeout(() => {
+                notification.style.transform = 'translateX(0)';
+            }, 100);
+
+            // Remove notification after 3 seconds
+            setTimeout(() => {
+                notification.style.transform = 'translateX(100%)';
+                setTimeout(() => {
+                    notification.remove();
+                }, 300);
+            }, 3000);
+        }
+
+        // Add hover effect for cards
+        document.querySelectorAll('.card').forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                
+                card.style.transform = `
+                    perspective(1000px)
+                    rotateX(${(y - rect.height/2) / 20}deg)
+                    rotateY(${-(x - rect.width/2) / 20}deg)
+                    translateZ(10px)
+                `;
+            });
+
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'none';
+            });
+        });
+
+        // Initialize the dashboard with some animations
+        function initializeDashboard() {
+            // Animate in the cards
+            document.querySelectorAll('.card').forEach((card, index) => {
+                setTimeout(() => {
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                }, index * 200);
+            });
+
+            // Show welcome notification
+            setTimeout(() => {
+                showNotification('Welcome back! Your account is ready.');
+            }, 1000);
+
+            // Update progress bars
+            document.querySelectorAll('.progress').forEach(progress => {
+                const targetWidth = progress.getAttribute('data-progress') || '0';
+                setTimeout(() => {
+                    progress.style.width = `${targetWidth}%`;
+                }, 500);
+            });
+        }
+
+        // Call initialization when DOM is loaded
+        document.addEventListener('DOMContentLoaded', initializeDashboard);
+
+        // Add responsive menu toggle
+        const menuToggle = document.createElement('button');
+        menuToggle.className = 'menu-toggle';
+        menuToggle.innerHTML = '<i class="fas fa-bars"></i>';
+        document.querySelector('.header-content').prepend(menuToggle);
+
+        menuToggle.addEventListener('click', () => {
+            document.querySelector('.user-menu').classList.toggle('active');
+        });
+
+        // Add dark mode toggle
+        const darkModeToggle = document.createElement('button');
+        darkModeToggle.className = 'dark-mode-toggle';
+        darkModeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+        document.querySelector('.user-menu').appendChild(darkModeToggle);
+
+        darkModeToggle.addEventListener('click', () => {
+            document.body.classList.toggle('dark-mode');
+            darkModeToggle.innerHTML = document.body.classList.contains('dark-mode') 
+                ? '<i class="fas fa-sun"></i>' 
+                : '<i class="fas fa-moon"></i>';
+        });
+    </script>
+</body>
+</html>
