@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Form with Sections</title>
+  <style>
+    body {
+      font-family: 'Times New Roman', Times, serif;
+      margin: 20px;
+    }
+</style>
+</head>
+<body>
+    <h1>Employee Registration</h1>
+  <form>
+    <fieldset>
+        <legend>Personal Information</legend>
+        <label for="first-name">First Name<span style="color: red; font-weight: bold;">*</span></label><br>
+        <input type="text" id="first-name" name="first-name" placeholder="Enter first name" required><br>
+        <label for="last-name">Last Name<span style="color: red; font-weight: bold;">*</span></label><br>
+        <input type="text" id="last-name" name="last-name" placeholder="Enter last name" required><br>
+     
+        <label for="email">Email<span style="color: red; font-weight: bold;">*</span></label><br>
+        <input type="email" id="email" name="email" placeholder="Enter email address" required><br>
+      <p span style="color: rgb(127, 136, 138);">Example: johndoe@Example.com</span></p>
+        <label for="phone">Phone Number<span style="color: red; font-weight: bold;">*</span></label><br>
+        <input type="tel" id="phone" name="phone" placeholder="Enter phone number" required><br>
+     
+        <label>Gender<span style="color: red; font-weight: bold;">*</span></label><br>
+          <label><input type="radio" name="gender" value="Male" required> Male</label>
+          <label><input type="radio" name="gender" value="Female"> Female</label>
+          <label><input type="radio" name="gender" value="Other"> Other</label><br>
+
+        <label for="dob">Date of Birth<span style="color: red; font-weight: bold;">*</span></label><br>
+        <input type="date" id="dob" name="dob" required><br>
+ 
+        <label>Marital Status<span style="color: red; font-weight: bold;">*</span></label><br>
+
+          <label><input type="radio" name="marital-status" value="Single" required onclick="toggleSpouseField(false)"> Single</label>
+          <label><input type="radio" name="marital-status" value="Married" onclick="toggleSpouseField(true)"> Married</label><br>
+
+     
+        <label for="spouse-name">Spouse Name(If applicable)</label><br>
+        <input type="text" id="spouse-name" name="spouse-name" placeholder="Enter spouse name">
+</fieldset>
+<fieldset>
+    <legend>Employment Details</legend>
+          <label for="department">Department<span style="color: red; font-weight: bold;">*</span></label><br>
+          <select id="department" name="department" required>
+            <option value="">Select Department</option>
+            <option value="IT">IT</option>
+            <option value="HR">HR</option>
+            <option value="Finance">Finance</option>
+          </select><br>
+        
+          <label for="experience">Years of Experience<span style="color: red; font-weight: bold;">*</span></label><br>
+          <input type="number" id="experience" name="experience" placeholder="Enter years of experience" min="0" required><br>
+       
+          <label>Skills</label>
+          <div class="checkbox-group">
+            <label><input type="checkbox" name="skills" value="HTML"> HTML</label>
+            <label><input type="checkbox" name="skills" value="CSS"> CSS</label>
+            <label><input type="checkbox" name="skills" value="JavaScript"> JavaScript</label>
+            <label><input type="checkbox" name="skills" value="SQL"> SQL</label>
+        </div><br>
+          <label for="certifications">Certifications</label><br>
+          <textarea id="certifications" name="certifications" placeholder="List your certifications" rows="4"></textarea>
+          <br>
+          <label for="profile-picture">Profile Picture</label><br>
+          <input type="file" id="profile-picture" name="profile-picture" accept=".jpg,.png">
+          <p span style="color: rgb(165, 175, 184);">Allowed formats: .jpg, .png</p>
+     
+    </form>
+</fieldset>
+<fieldset>
+    <legend>Emergency Contact</legend>
+    <form>
+        <label for="contactname">Contact Name<span style="color: red; font-weight: bold;">*</span></label><br>
+        <input type="text" name="contactname"  placeholder="Enter contact name"><br>
+
+        <label for="contactnumber ">Contact number<span style="color: red ;font-weight: bold;">*</span></label><br>
+        <input type="tel" name="contactnumber" placeholder="Enter contact number"><br>
+        <label for="relationship">Relationship<span style="color: red; font-weight: bold;">*</span></label><br>
+        <input type="text" name="relationship"  placeholder="Enter relationship (e.g,Partner)">
+    </form>
+</fieldset>
+
+<fieldset>
+    <legend>Login Details</legend>
+    <form>
+        <label for="username">Username<span style="color: red; font-weight: bold;">*</span></label><br>
+        <input type="text" name="username"  placeholder="Choose a username"><br>
+        <label for="password">Password<span style="color: red ;font-weight: bold;">*</span></label><br>
+        <input type="password" name="password" placeholder="Enter password"><br>
+        <label for="confirmation">Confirm Password<span style="color: red; font-weight: bold;">*</span></label><br>
+        <input type="password" name="confirmation"  placeholder="Re-enter password">
+       
+    </form>
+</fieldset>
+<button type="Register">Register</button>
+<button type="clearform">Clear Form</button>
+</body>
+</html>

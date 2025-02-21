@@ -1,0 +1,786 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="./titlelogo.png">
+    <title>Mobi-comm</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=Raleway:400,700');
+
+        body {
+            font-family: Raleway, sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            background-color: #f0e0e0;
+            line-height: 1.6;
+            /* Improves text readability */
+        }
+
+        .container {
+            background-color: #fff;
+            max-width: 1200px;
+            /* Prevents excessive width on large screens */
+            margin: 0 auto;
+            /* Centers the container */
+            overflow: hidden;
+            /* Prevents content from overflowing */
+        }
+
+        header {
+            background-color: #32336c;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 2px;
+        }
+
+        /* Navigation Bar */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #32336c;
+            padding: 0.5rem 1rem;
+        }
+
+        .navbar a {
+            color: white;
+            padding: 0.5rem 0.8rem;
+            text-decoration: none;
+            text-align: center;
+            border-radius: 5px;
+            position: relative;
+            overflow: hidden;
+            transition: background-color 0.3s ease;
+            /* Smooth transition for hover effect */
+        }
+
+
+        .navbar a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: white;
+            transition: width 0.3s ease-in-out;
+        }
+
+        .navbar a:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .navbar a:hover::after {
+            width: 100%;
+        }
+
+        .menu-icons {
+            display: flex;
+            margin-right: 40px;
+            align-items: center;
+        }
+
+        .menu-icons span {
+            width: auto;
+            padding: 0.3rem 0.6rem;
+            font-size: 0.7rem;
+            background-color: #fff;
+            border-radius: 20px;
+            margin-right: 0.3rem;
+            display: block;
+            transform: scale(1);
+            transition: transform 0.3s ease;
+        }
+
+        .menu-icons span:hover {
+            transform: scale(1.1);
+        }
+
+        .user-icon {
+            font-size: 1.5rem;
+            color: white;
+            margin-left: 1rem;
+            /* Add spacing between icons */
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.1);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        #imgnav img {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #00a8e8, #0077cc);
+            border-radius: 50%;
+            margin-left: 20px;
+        }
+
+        /* Swiper Carousel */
+        .swiper {
+            width: 100%;
+            height: 300px;
+        }
+
+        .swiper-slide img {
+            width: 50%;
+            height: auto;
+            object-fit: cover;
+            display: block;
+            margin: 40px auto;
+            /* Center images */
+        }
+
+        h2,
+        h3 {
+            margin-left: 1rem;
+        }
+
+        /* Recharge Form */
+        .recharge-form {
+            margin: 1rem auto;
+            padding: 1rem;
+            border: black solid 1px;
+            border-radius: 20px;
+            max-width: 600px;
+            /* Limit form width */
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .recharge-form:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .recharge-form h5 {
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 0.7rem;
+            margin-bottom: 1rem;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+            /* Include padding and border in element's total width and height */
+        }
+
+        button.recharge-btn {
+            background-color: #32336c;
+            ;
+            color: white;
+            border: none;
+            border-radius: 20px;
+            padding: 0.7rem 1.3rem;
+            cursor: pointer;
+            width: auto;
+            /* Adjust width to content */
+            display: block;
+            margin: 0 auto;
+            /* Center the button */
+            transition: background-color 0.3s ease;
+            /* Smooth transition for hover effect */
+            position: relative;
+            overflow: hidden;
+        }
+
+        button.recharge-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: 0.5s;
+        }
+
+        button.recharge-btn:hover::before {
+            left: 100%;
+        }
+
+        button.recharge-btn:hover {
+            background-color: #4e4f6d;
+        }
+
+        /* Ad Space */
+        .ad-space {
+            margin: 1rem;
+        }
+
+        .ad-space video {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* Switch Section */
+        .switch-section {
+            margin: 1rem auto;
+            padding: 1rem;
+            border: black solid 1px;
+            border-radius: 20px;
+            max-width: 600px;
+            /* Limit section width */
+            text-align: center;
+        }
+
+        button.get-started-btn {
+            background-color: #32336c;
+            color: white;
+            border: none;
+            border-radius: 20px;
+            padding: 0.7rem 1.3rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            /* Smooth transition for hover effect */
+        }
+
+        button.get-started-btn:hover {
+            background-color: #4e4f6d;
+        }
+
+        /* Recommended Ads */
+        .recommended-ads {
+            display: flex;
+            flex-wrap: wrap;
+            /* Allow items to wrap to the next line */
+            justify-content: space-around;
+            gap: 1rem;
+            padding: 1rem;
+        }
+
+        .card {
+            background-color: #fff;
+            border-radius: 10px;
+            padding: 1rem;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            flex: 1 1 300px;
+            /* Distribute available space, initial size of 300px */
+            min-width: 250px;
+            /* Minimum width for cards */
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(130deg, transparent 0%, rgba(50, 51, 108, 0.1) 100%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+        }
+
+        .card:hover::before {
+            opacity: 1;
+        }
+
+        .card-img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+
+        .card-title {
+            margin: 0.7rem 0;
+            font-size: 1.1rem;
+            font-weight: bold;
+        }
+
+        .card-desc {
+            font-size: 0.9rem;
+            color: #555;
+            margin-bottom: 0.7rem;
+        }
+
+        button.card-btn {
+            background-color: #32336c;
+            ;
+            color: white;
+            border: none;
+            border-radius: 20px;
+            padding: 0.5rem 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            /* Smooth transition for hover effect */
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        button.card-btn::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(255, 255, 255, 0.2);
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: transform 0.3s ease;
+            z-index: -1;
+        }
+
+        button.card-btn:hover::after {
+            transform: scaleX(1);
+            transform-origin: left;
+        }
+
+        footer button {
+            position: relative;
+            overflow: hidden;
+        }
+
+        footer button::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: white;
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        footer button:hover::after {
+            transform: scaleX(1);
+        }
+
+        /* Premium Glass Effect */
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        /* Scroll Progress Bar */
+        .progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 5px;
+            background: linear-gradient(to right, #32336c, #00a8e8);
+            z-index: 1000;
+            transition: width 0.3s ease;
+        }
+
+        /* Loading Animation */
+        .loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #32336c;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.8s ease;
+        }
+
+        .logo-loader {
+            animation: logo-pulse 2s infinite;
+        }
+
+        .logo-loader img {
+            width: 200px;
+            /* Increased size for better visibility */
+            height: auto;
+            object-fit: contain;
+        }
+
+        @keyframes logo-pulse {
+            0% {
+                transform: scale(0.95);
+                opacity: 0.8;
+            }
+
+            50% {
+                transform: scale(1.05);
+                opacity: 1;
+            }
+
+            100% {
+                transform: scale(0.95);
+                opacity: 0.8;
+            }
+        }
+
+        footer {
+            background-color: #32336c;
+            color: white;
+            padding: 0.7rem;
+            display: flex;
+            flex-wrap: wrap;
+            /* Allows buttons to wrap on smaller screens */
+            justify-content: space-around;
+            /* Distributes buttons evenly */
+            gap: 0.5rem;
+            /* Adds spacing between buttons */
+        }
+
+        footer button {
+            background-color: transparent;
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+            /* Smooth transition for hover effect */
+        }
+
+        footer button:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        footer:last-of-type {
+            text-align: center;
+            padding-left: 0;
+        }
+
+        @keyframes spin {
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        @media (max-width: 768px) {
+
+            /* Adjustments for smaller screens */
+            header {
+                flex-direction: column;
+                /* Stack header elements vertically */
+                text-align: center;
+            }
+
+            .menu-icons {
+                margin-left: 0;
+                /* Reset margin */
+                width: 100%;
+                /* Take full width */
+                justify-content: center;
+                /* Center the icons */
+            }
+
+            .navbar {
+                flex-direction: column;
+                /* Stack nav links vertically */
+                align-items: stretch;
+                /* Stretch links to fill the width */
+            }
+
+            .navbar a {
+                padding: 0.7rem;
+                text-align: center;
+            }
+
+            .swiper-slide img {
+                width: 90%;
+                /* Make images larger */
+                margin: 20px auto;
+            }
+
+            .recharge-form {
+                padding: 0.7rem;
+                margin: 0.7rem;
+            }
+
+            .switch-section {
+                padding: 0.7rem;
+                margin: 0.7rem;
+            }
+
+            .recommended-ads {
+                flex-direction: column;
+                /* Stack cards vertically */
+            }
+
+            .card {
+                min-width: auto;
+                /* Allow cards to take full width */
+            }
+
+            footer {
+                flex-direction: column;
+                /* Stack footer buttons vertically */
+                align-items: center;
+                /* Center the buttons */
+            }
+        }
+
+        #scrollTopBtn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            padding: 10px;
+            background-color: #c7a23d;
+            color: white;
+            border: none;
+            cursor: pointer;
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="loading-screen">
+        <div class="logo-loader">
+            <img src="./logo-removebg-preview.png" alt="Mobi-comm Logo">
+        </div>
+    </div>
+    <!-- Scroll Progress Bar -->
+    <div class="progress-bar"></div>
+
+    <div class="container">
+        <header>
+            <div id="imgnav">
+                <a href="Page1.1.html"><img src="./logo-removebg-preview.png" alt="logo"></a>
+            </div>
+            <!-- Navigation Bar -->
+            <nav class="navbar">
+                <a href="Recharge(page2).html">Recharge</a>
+                <a href="NewSimRegistration.html">New prepaid sim</a>
+                <a href="viewplans2.html">View plans</a>
+                <a href="InternationalRoaming.html">International roaming</a>
+                <a href="Help.html">Help</a>
+            </nav>
+            <div class="menu-icons" href="ReferAFriend.html">
+                <span class="glass-effect">Refer</span>
+                <a href="loginPageNew.html" class="user-icon"><i class="fas fa-user"></i></a>
+            </div>
+        </header>
+
+        <!-- Swiper Carousel -->
+        <section class="swiper-container">
+            <div class="swiper mySwiper">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                        <img src="./internationroaming.png" />
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="./Yourpayments.png" />
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="./Offer.png" />
+                    </div>
+                </div>
+                <div class="swiper-pagination"></div>
+            </div>
+        </section>
+
+        <h2>Easy Mobile Recharge</h2>
+        <!-- Recharge Form -->
+        <section class="recharge-form" data-aos="zoom-in">
+            <h5>Enter Your Mobile Number</h5>
+            <input type="text" id="mobileNumber" placeholder="Enter mobile number">
+            <a href=viewplans2.html style="text-decoration: none;color:#32336c"><button class="recharge-btn">Recharge Now</button></a>
+        </section>
+
+        <!-- Ad Space -->
+        <section class="ad-space">
+            <video src="./Switch to mobi-comm video.mp4" controls autoplay muted loop></video>
+        </section>
+
+        <!-- Switch Section -->
+        <section class="switch-section" data-aos="fade-up">
+            <h3>Switch to Our Services Today!</h3>
+            <p>Experience seamless mobile recharges and exclusive offers.</p>
+            <a href="NewSimRegistration.html"><button class="get-started-btn">Get Started</button></a>
+        </section>
+
+        <h3>Recommended Ads</h3>
+        <!-- Recommended Ads -->
+        <section class="recommended-ads">
+            <div class="card" data-aos="fade-up" data-aos-delay="0">
+                <img class="card-img"
+                    src="https://images.pexels.com/photos/789822/pexels-photo-789822.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+                    alt="Ad 1">
+                <h4 class="card-title">Exclusive Offer</h4>
+                <p class="card-desc">Get 20% off on your first recharge!</p>
+                <a href="viewplans2.html"><button class="card-btn">View Offer</button></a>
+            </div>
+            <div class="card" data-aos="fade-up" data-aos-delay="100">
+                <img class="card-img"
+                    src="https://images.pexels.com/photos/5791697/pexels-photo-5791697.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+                    alt="Ad 2">
+                <h4 class="card-title">Limited Time Deal</h4>
+                <p class="card-desc">Unlimited calls & 5GB data for just ₹10!</p>
+                <a href="viewplans2.html"><button class="card-btn">Recharge Now</button></a>
+            </div>
+            <div class="card" data-aos="fade-up" data-aos-delay="200">
+                <img class="card-img"
+                    src="https://images.pexels.com/photos/6787890/pexels-photo-6787890.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+                    alt="Ad 3">
+                <h4 class="card-title">New Connection</h4>
+                <p class="card-desc">Switch to our network and enjoy the benefits.</p>
+                <a href="NewSimRegistration.html"><button class="card-btn">Switch Now</button></a>
+            </div>
+        </section>
+        <button id="scrollTopBtn">↑</button>
+
+        <footer>
+            <button id="btns" onclick="window.location.href='PrivacyPolicy.html'">Privacy Policy</button>
+            <button id="btns" onclick="window.location.href='TermsAndCondition.html'">Terms & Conditions</button>
+            <button id="btns" onclick="window.location.href='ContactUs.html'">Contact Us</button>
+            <button id="btns" onclick="window.location.href='AboutUs.html'">About Us</button>
+            <button id="btns" onclick="window.location.href='Help.html'">Help</button>
+            <button id="btns" onclick="window.location.href='Feedback.html'">Feedback</button>
+        </footer>
+        <footer style="padding-left: 0; text-align: center;">&copy; 2025 Mobi-comm.com. All Rights Reserved.</footer>
+    </div>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+        integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- Swiper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
+    <!-- Additional Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script>
+        // Show Scroll to Top Button
+        window.onscroll = function () {
+            let btn = document.getElementById("scrollTopBtn");
+            if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+                btn.style.display = "block";
+            } else {
+                btn.style.display = "none";
+            }
+        };
+
+        // Scroll to Top Functionality
+        document.getElementById("scrollTopBtn").addEventListener("click", function () {
+            window.scrollTo({ top: 0, behavior: "smooth" });
+        });
+        // Initialize AOS
+        AOS.init({
+            duration: 1000,
+            once: true
+        });
+
+        // Loading Screen
+        window.addEventListener('load', function () {
+            const loadingScreen = document.querySelector('.loading-screen');
+            loadingScreen.style.opacity = '0';
+            setTimeout(() => {
+                loadingScreen.style.display = 'none';
+            }, 500);
+        });
+
+        // Scroll Progress Bar
+        window.addEventListener('scroll', function () {
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            document.querySelector('.progress-bar').style.width = scrolled + '%';
+        });
+
+        // Add animation classes to elements
+        document.querySelectorAll('.card').forEach((card, index) => {
+            card.setAttribute('data-aos', 'fade-up');
+            card.setAttribute('data-aos-delay', index * 100);
+        });
+
+        document.querySelector('.recharge-form').setAttribute('data-aos', 'zoom-in');
+        document.querySelector('.switch-section').setAttribute('data-aos', 'fade-up');
+
+        // Enhanced Swiper initialization
+        var swiper = new Swiper(".mySwiper", {
+            effect: "coverflow",
+            grabCursor: true,
+            centeredSlides: true,
+            slidesPerView: "auto",
+            coverflowEffect: {
+                rotate: 50,
+                stretch: 0,
+                depth: 100,
+                modifier: 1,
+                slideShadows: true,
+            },
+            loop: true,
+            autoplay: {
+                delay: 1500,
+                disableOnInteraction: false,
+            },
+            pagination: {
+                el: ".swiper-pagination",
+                clickable: true,
+            },
+            navigation: {
+                nextEl: ".swiper-button-next",
+                prevEl: ".swiper-button-prev",
+            }
+        });
+
+        // Enhanced form validation with animation
+        document.querySelector('.recharge-btn').addEventListener('click', function () {
+            const mobileNumber = document.querySelector('#mobileNumber');
+            if (mobileNumber.value) {
+                this.classList.add('animate__animated', 'animate__pulse');
+                setTimeout(() => {
+                    alert(`Recharge initiated for ${mobileNumber.value}`);
+                    this.classList.remove('animate__animated', 'animate__pulse');
+                }, 300);
+            } else {
+                mobileNumber.classList.add('animate__animated', 'animate__shakeX');
+                setTimeout(() => {
+                    mobileNumber.classList.remove('animate__animated', 'animate__shakeX');
+                }, 500);
+                alert('Please enter a mobile number');
+            }
+        });
+        document.addEventListener('DOMContentLoaded', function () {
+            // Show loading screen immediately
+            const loadingScreen = document.querySelector('.loading-screen');
+            loadingScreen.style.opacity = '1';
+
+            // Hide loading screen after page is fully loaded
+            window.addEventListener('load', function () {
+                setTimeout(() => {
+                    loadingScreen.style.opacity = '0';
+                    setTimeout(() => {
+                        loadingScreen.style.display = 'none';
+                    }, 800); // Match this with the CSS transition time
+                }, 1000); // Show logo for at least 1 second
+            });
+        });
+    </script>
+</body>
+
+</html>

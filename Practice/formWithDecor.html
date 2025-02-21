@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Form with Sections</title>
+  <style>
+    body {
+      font-family: 'Times New Roman', Times, serif;
+      margin: 20px;
+    }
+    body{
+        background-image: url(https://images.pexels.com/photos/2555642/pexels-photo-2555642.jpeg?cs=srgb&dl=pexels-valeriiamiller-2555642.jpg&fm=jpg);
+        background-attachment: fixed;
+    }
+    .form-section1 {
+      margin-left: 20px;
+      margin-right: 20px;
+      border: 2px solid #ccc;
+      padding: 20px;
+      border-radius: 10px;
+      margin-bottom: 20px;
+      background-image: url(https://images.unsplash.com/photo-1486707471592-8e7eb7e36f78?q=80&w=1994&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D);
+      /* background-color:  rgb(79, 94, 78); */
+    }
+    .form-section2 {
+        margin-left: 20px;
+        margin-right: 20px;
+      border: 2px solid #ccc;
+      padding: 20px;
+      border-radius: 10px;
+      margin-bottom: 20px;
+      background-image: url(https://images.unsplash.com/photo-1486707471592-8e7eb7e36f78?q=80&w=1994&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D);
+
+      /* background-color: rgb(166, 200, 165); */
+    }
+    .form-section3 {
+        margin-left: 20px;
+        margin-right: 20px;
+      border: 2px solid #ccc;
+      padding: 20px;
+      border-radius: 10px;
+      margin-bottom: 20px;
+      background-image: url(https://images.unsplash.com/photo-1486707471592-8e7eb7e36f78?q=80&w=1994&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D);
+
+      /* background-color: rgb(95, 113, 94); */
+    }
+    .form-section4 {
+        margin-left: 20px;
+        margin-right: 20px;
+      border: 2px solid #ccc;
+      padding: 20px;
+      border-radius: 10px;
+      margin-bottom: 20px;
+      background-image: url(https://images.unsplash.com/photo-1486707471592-8e7eb7e36f78?q=80&w=1994&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D);
+
+      /* background-color: rgb(166, 200, 165); */
+    }
+    h3 {
+      text-align: center;
+    }
+    .form-group {
+      margin-bottom: 15px;
+    }
+    label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
+    input, select, textarea {
+      width: 100%;
+      padding: 8px;
+      margin-top: 5px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    .checkbox-group, .radio-group {
+      display: flex;
+      gap: 10px;
+    }
+    button {
+      padding: 10px 20px;
+      margin-right: 10px;
+      border:#ccc;
+      border-radius: 15px;
+      background-color: #007BFF;
+      color: white;
+      cursor: pointer;
+    }
+    button[type="reset"] {
+      background-color: #6c757d;
+    }
+    button:hover {
+      opacity: 0.9;
+    }
+    .allowed-formats {
+        margin-top: 0%;
+    }
+  </style>
+</head>
+<body>
+  <form>
+    <div class="form-section1">
+      <h3>Personal Information</h3>
+      <div class="form-group">
+        <label for="first-name">First Name<span style="color: red; font-weight: bold;">*</span></label>
+        <input type="text" id="first-name" name="first-name" placeholder="Enter first name" required>
+      </div>
+      <div class="form-group">
+        <label for="last-name">Last Name<span style="color: red; font-weight: bold;">*</span></label>
+        <input type="text" id="last-name" name="last-name" placeholder="Enter last name" required>
+      </div>
+      <div class="form-group">
+        <label for="email">Email<span style="color: red; font-weight: bold;">*</span></label>
+        <input type="email" id="email" name="email" placeholder="Enter email address" required>
+        <div class="allowed-formats">
+        <p style="color: grey;">Example: johndoe@example.com</p>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="phone">Phone Number<span style="color: red; font-weight: bold;">*</span></label>
+        <input type="tel" id="phone" name="phone" placeholder="Enter phone number" required>
+      </div>
+      <div class="form-group">
+        <label>Gender<span style="color: red; font-weight: bold;">*</span></label>
+        <div class="radio-group">
+          <label><input type="radio" name="gender" value="Male" required> Male</label>
+          <label><input type="radio" name="gender" value="Female"> Female</label>
+          <label><input type="radio" name="gender" value="Other"> Other</label>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="dob">Date of Birth<span style="color: red; font-weight: bold;">*</span></label>
+        <input type="date" id="dob" name="dob" required>
+      </div>
+      <div class="form-group">
+        <label>Marital Status<span style="color: red; font-weight: bold;">*</span></label>
+        <div class="radio-group">
+          <label><input type="radio" name="marital-status" value="Single" required onclick="toggleSpouseField(false)"> Single</label>
+          <label><input type="radio" name="marital-status" value="Married" onclick="toggleSpouseField(true)"> Married</label>
+        </div>
+      </div>
+      <div class="form-group" id="spouse-name-group" style="display: none;">
+        <label for="spouse-name">Spouse Name</label>
+        <input type="text" id="spouse-name" name="spouse-name" placeholder="Enter spouse name">
+      </div>
+    </div>
+
+    <div class="form-section2">
+      <h3>Employment Details</h3>
+      <div class="form-group">
+        <label for="department">Department<span style="color: red; font-weight: bold;">*</span></label>
+        <select id="department" name="department" required>
+          <option value="">Select Department</option>
+          <option value="IT">IT</option>
+          <option value="HR">HR</option>
+          <option value="Finance">Finance</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="experience">Years of Experience<span style="color: red; font-weight: bold;">*</span></label>
+        <input type="number" id="experience" name="experience" placeholder="Enter years of experience" required>
+      </div>
+      <div class="form-group">
+        <label>Skills</label>
+        <div class="checkbox-group">
+          <label><input type="checkbox" name="skills" value="HTML"> HTML</label>
+          <label><input type="checkbox" name="skills" value="CSS"> CSS</label>
+          <label><input type="checkbox" name="skills" value="JavaScript"> JavaScript</label>
+          <label><input type="checkbox" name="skills" value="SQL"> SQL</label>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="certifications">Certifications</label>
+        <textarea id="certifications" name="certifications" placeholder="List your certifications" rows="4"></textarea>
+      </div>
+      <div class="form-group">
+        <label for="profile-picture">Profile Picture</label>
+        <input type="file" id="profile-picture" name="profile-picture" accept=".jpg,.png">
+        <div  class="allowed-formats">
+        <p class="allowed-formats" style="color: #6c757d;">Allowed formats: .jpg, .png</p>
+    </div>
+      </div>
+    </div>
+    
+  </form>
+<div class="form-section3">
+    <h3>Contact Details</h3>
+    <form>
+        <div class="form-group">
+        <label for="contactname">Contact Name<span style="color: red; font-weight: bold;">*</span></label>
+        <input type="text" name="contactname"  placeholder="Enter contact name"><br>
+        </div>
+        <div class="form-group">
+        <label for="contactnumber ">Contact number<span style="color: red ;font-weight: bold;">*</span></label>
+        <input type="tel" name="contactnumber" placeholder="Enter contact number"><br>
+        </div>
+        <div class="form-group">
+        <label for="relationship">Relationship<span style="color: red; font-weight: bold;">*</span></label>
+        <input type="text" name="relationship"  placeholder="Enter relationship (e.g,Partner)">
+    </div>
+    </form>
+</div>
+
+<div class="form-section4">
+       <form>
+        <div class="form-group">
+        <label for="username">Username<span style="color: red; font-weight: bold;">*</span></label>
+        <input type="text" name="username"  placeholder="Choose a username"><br>
+        </div>
+        <div class="form-group">
+        <label for="password">Password<span style="color: red ;font-weight: bold;">*</span></label>
+        <input type="password" name="password" placeholder="Enter password"><br>
+        </div>
+        <div class="form-group">
+            <label for="confirmation">Confirm Password<span style="color: red; font-weight: bold;">*</span></label>
+            <input type="password" name="confirmation"  placeholder="Re-enter password"></div>
+       <br><br>
+
+       <button type="submit">Submit</button>
+    <button type="reset">Reset</button>
+    </form>
+</div>
+  </script>
+</body>
+</html>
