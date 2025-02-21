@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Image Event Dom Demo</title>
+        <style>
+            img{
+                margin: 30px;
+            }
+            #wish,#greet,#eventlistener{
+                background-color:beige;
+                font-style: italic;
+                font-size: large;
+                font-family: 'Times New Roman', Times, serif;
+                border-radius: 10px;
+                margin-top:40px;
+                margin-left: 80px;
+                padding: 20px;
+            }
+            button:hover{
+                transition: lightgreen;
+            }
+        </style>
+    </head>
+    <body>
+    <img id="img1" src="https://media3.giphy.com/media/vNMdKnAp8VvXiUMyMn/200.gif"     width="300" height="300"> 
+    <img id="img2" width="300" height="300">   
+    <br>
+    <button id="greet" onclick="alert('Hi how are you?')">Click here</button>
+    <button id="wish" onclick="sayHappyBirthday()">Wish</button>
+    <button id="eventlistener">Event </button>
+
+  <script>
+   function sayHappyBirthday(){
+        alert('Happy birthday to you');
+    }
+    function stayHappy(){
+        alert('Always stay happy!!!!');
+    }
+    //if no parameter use the reference
+    document.getElementById("eventlistener").addEventListener("click",stayHappy);
+    document.getElementById("eventlistener").addEventListener("click",()=>stayHappy());
+
+    // document.getElementById("eventlistener").addEventListener("click",function(){stayHappy();});
+
+    document.getElementById("img2").setAttribute("src","https://media3.giphy.com/media/vNMdKnAp8VvXiUMyMn/200.gif");
+  </script>
+    </body>
+</html>

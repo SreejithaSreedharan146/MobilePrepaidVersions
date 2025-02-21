@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>   
+    <style>
+        body {
+            font-family: 'Times New Roman', Times, serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(50deg, #7e8c9a, #c6abaf);
+        }
+        .container {
+            background-color: beige;
+            border: 2px solid #2a2b2b;
+            border-radius: 15px;
+            box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.2);
+            padding: 30px;
+            width: 300px;
+        }
+        h1 {
+            color: rgb(52, 37, 65);
+            text-align: center;
+        }
+        input {
+            width: 90%;
+            padding: 10px;
+            font-style: italic;
+            border-radius: 10px;
+            border: 1px solid #c6abaf;
+            margin-bottom: 5px;
+            box-shadow: 4px 4px 10px #7e8c9a;
+        }
+        button {
+            padding: 10px 20px;
+            border-radius: 10px;
+            background-color: rgb(171, 143, 196);
+            cursor: pointer;
+            border: none;
+            width: 100%;
+        }
+        label{
+            padding-left: 1px ;
+        }
+        button:hover {
+            background-color: #c6abaf;
+        }
+        @media (max-width: 400px) {
+            .container {
+                width: 90%;
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <form class="container" action="RedirectLoginPage.html" method="get" onsubmit="return true">
+        <h1>Login</h1>
+        <label for="username">Username<span style="color: red;">*</span></label><br><br>
+        <input type="text" id="username" name="username" required placeholder="Enter username"><br><br>
+
+        <label for="password">Password<span style="color: red;">*</span></label><br><br>
+        <input type="password" id="password" name="password" required placeholder="Enter password"><br><br>
+
+        <button type="submit">Login</button>
+    </form>
+    <script src="LoginValidation.js"></script>
+</body>
+</html>

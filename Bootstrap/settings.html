@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settings - Premium Mobile Service Portal</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+    <style>
+        /* Base Styles */
+        :root {
+            --primary: #6366f1;
+            --primary-dark: #4338ca;
+            --secondary: #ec4899;
+            --accent: #8b5cf6;
+            --success: #22c55e;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+            --dark: #1e293b;
+            --light: #f8fafc;
+        }
+
+        body {
+            background: linear-gradient(135deg, #f6f7ff 0%, #fff 100%);
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            min-height: 100vh;
+        }
+
+        .header {
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            padding: 2rem 0;
+            position: relative;
+            margin-bottom: 2rem;
+        }
+
+        .settings-card {
+            background: white;
+            border-radius: 15px;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .settings-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .toggle-switch {
+            position: relative;
+            display: inline-block;
+            width: 60px;
+            height: 34px;
+        }
+
+        .toggle-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: .4s;
+            border-radius: 34px;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 26px;
+            width: 26px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+
+        input:checked + .slider {
+            background-color: var(--primary);
+        }
+
+        input:checked + .slider:before {
+            transform: translateX(26px);
+        }
+    </style>
+</head>
+<body>
+    <!-- Settings Page Content -->
+    <header class="header">
+        <div class="container">
+            <div class="d-flex justify-content-between align-items-center">
+                <h1 class="text-white h3">Settings</h1>
+                <a href="index.html" class="text-white">
+                    <i class="fas fa-times fa-lg"></i>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <div class="container mb-5">
+        <div class="settings-card">
+            <h5 class="mb-4">Account Settings</h5>
+            <div class="mb-3 d-flex justify-content-between align-items-center">
+                <div>
+                    <h6 class="mb-1">Two-Factor Authentication</h6>
+                    <p class="text-muted small mb-0">Enable extra security</p>
+                </div>
+                <label class="toggle-switch">
+                    <input type="checkbox" checked>
+                    <span class="slider"></span>
+                </label>
+            </div>
+            <div class="mb-3 d-flex justify-content-between align-items-center">
+                <div>
+                    <h6 class="mb-1">Biometric Login</h6>
+                    <p class="text-muted small mb-0">Use fingerprint/face ID</p>
+                </div>
+                <label class="toggle-switch">
+                    <input type="checkbox">
+                    <span class="slider"></span>
+                </label>
+            </div>
+        </div>
+
+        <div class="settings-card">
+            <h5 class="mb-4">Notifications</h5>
+            <div class="mb-3 d-flex justify-content-between align-items-center">
+                <div>
+                    <h6 class="mb-1">Push Notifications</h6>
+                    <p class="text-muted small mb-0">Get instant updates</p>
+                </div>
+                <label class="toggle-switch">
+                    <input type="checkbox" checked>
+                    <span class="slider"></span>
+                </label>
+            </div>
+            <div class="mb-3 d-flex justify-content-between align-items-center">
+                <div>
+                    <h6 class="mb-1">Email Notifications</h6>
+                    <p class="text-muted small mb-0">Receive email updates</p>
+                </div>
+                <label class="toggle-switch">
+                    <input type="checkbox" checked>
+                    <span class="slider"></span>
+                </label>
+            </div>
+        </div>
+        <div class="settings-card">
+            <h5 class="mb-4">Privacy</h5>
+            <div class="mb-3 d-flex justify-content-between align-items-center">
+                <div>
+                    <h6 class="mb-1">Location Services</h6>
+                    <p class="text-muted small mb-0">Allow location access</p>
+                </div>
+                <label class="toggle-switch">
+                    <input type="checkbox">
+                    <span class="slider"></span>
+                </label>
+            </div>
+            <div class="mb-3 d-flex justify-content-between align-items-center">
+                <div>
+                    <h6 class="mb-1">Data Sharing</h6>
+                    <p class="text-muted small mb-0">Share usage statistics</p>
+                </div>
+                <label class="toggle-switch">
+                    <input type="checkbox">
+                    <span class="slider"></span>
+                </label>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Settings Page JavaScript
+        document.addEventListener('DOMContentLoaded', function() {
+            // Handle toggle switches
+            const toggles = document.querySelectorAll('.toggle-switch input');
+            toggles.forEach(toggle => {
+                toggle.addEventListener('change', function() {
+                    const setting = this.closest('.mb-3').querySelector('h6').textContent;
+                    const status = this.checked ? 'enabled' : 'disabled';
+                    console.log(${setting} has been ${status});
+                    // Here you would typically make an API call to save the setting
+                });
+            });
+        });
+    </script>
+</body>
+</html>

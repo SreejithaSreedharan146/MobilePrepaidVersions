@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Json example 1</title>
+    <style>
+        button {
+            border-radius: 10px;
+            padding: 10px;
+            background-color: lightblue;
+            border: none;
+            cursor: pointer;
+        }
+        #userTable {
+            border: 2px solid lightblue;
+            margin: 20px;
+            padding: 20px;
+            width: 80%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 2px solid rgb(197, 227, 197);
+            padding: 10px;
+            text-align: center;
+            font-family: 'Times New Roman', Times, serif;
+        }
+        tr {
+            background-color: beige;
+        }
+        td {
+            background-color: rgb(237, 246, 237);
+        }
+        img {
+            width: 100px;
+            height: auto;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <button onclick="getUsers()">Load Details of Movies</button>
+    <table id="userTable">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Year</th>
+                <th>Runtime</th>
+                <th>Poster</th>
+            </tr>
+        </thead>
+        <tbody id="userTableBody"></tbody>
+    </table>
+
+    <script>
+        function getUsers() {
+            fetch("https://my-json-server.typicode.com/horizon-code-academy/fake-movies-api/movies")
+            .then(response => response.json())
+            .then(data => {
+                console.log(data);
+                let userTableBody = document.getElementById("userTableBody");
+                userTableBody.innerHTML = ""; // Clears previous data
+
+                data.forEach(user => {
+                    let tr = document.createElement("tr");
+
+                    let tdTitle = document.createElement("td");
+                    let tdYear = document.createElement("td");
+                    let tdRuntime = document.createElement("td");
+                    let tdPoster = document.createElement("td");
+
+                    tdTitle.textContent = user.Title;
+                    tdYear.textContent = user.Year;
+                    tdRuntime.textContent = user.Runtime;
+
+                    let img = document.createElement("img");
+                    img.src = user.Poster;
+                    img.alt = user.Title;
+                    tdPoster.appendChild(img);
+
+                    tr.appendChild(tdTitle);
+                    tr.appendChild(tdYear);
+                    tr.appendChild(tdRuntime);
+                    tr.appendChild(tdPoster);
+                    
+                    userTableBody.appendChild(tr);
+                });
+            })
+            .catch(error => console.error("Error fetching data:", error));
+        }
+    </script>
+</body>
+</html>

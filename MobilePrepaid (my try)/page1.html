@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mobile Prepaid Recharge</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <style>
+        body { font-family: Arial, sans-serif; }
+        .navbar { background-color: #e60000; }
+        .navbar-brand, .nav-link { color: white !important; }
+        .hero { background: url('airtel-banner.jpg') no-repeat center center/cover; height: 300px; color: white; display: flex; align-items: center; justify-content: center; text-align: center; }
+        .hero h1 { font-size: 2.5rem; }
+        .container { margin-top: 20px; }
+        .recharge-box { padding: 20px; background: #f9f9f9; border-radius: 8px; }
+        .footer { background-color: #222; color: white; padding: 20px; text-align: center; margin-top: 20px; }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg">
+        <div class="container">
+            <a class="navbar-brand" href="#">Mobile Recharge</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Plans</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Support</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    
+    <div class="hero">
+        <h1>Fast & Secure Mobile Recharge</h1>
+    </div>
+    
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6 recharge-box">
+                <h3>Recharge Your Number</h3>
+                <form>
+                    <div class="mb-3">
+                        <label for="mobileNumber" class="form-label">Mobile Number</label>
+                        <input type="text" class="form-control" id="mobileNumber" placeholder="Enter your mobile number">
+                    </div>
+                    <div class="mb-3">
+                        <label for="plan" class="form-label">Select Plan</label>
+                        <select class="form-control" id="plan">
+                            <option>₹199 - 28 Days, 1.5GB/Day</option>
+                            <option>₹399 - 56 Days, 2GB/Day</option>
+                            <option>₹599 - 84 Days, 3GB/Day</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-danger w-100">Recharge Now</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    <footer class="footer">
+        <p>&copy; 2024 Mobile Prepaid Recharge. All Rights Reserved.</p>
+    </footer>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

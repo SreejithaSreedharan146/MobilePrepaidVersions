@@ -1,0 +1,14 @@
+{"users": [
+    {
+        "name":"sreejitha",
+        "age":21,
+        "isProgrammer":true,
+        "skills":["html","css","javascript"],
+        "address":{
+            "city":"salem",
+            "state":"TN"
+        }
+    }
+]
+}
+

@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="./titlelogo.png">
+    <title>Service Switch Form</title>
+    <style>
+                @import url('https://fonts.googleapis.com/css?family=Raleway:400,700');
+
+        body {
+            font-family: Raleway;
+            background: linear-gradient(135deg, #ebf8ff 0%, #e0eafc 100%);
+            margin: 0;
+            padding: 20px;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .container {
+            max-width: 600px;
+            width: 100%;
+            background: white;
+            padding: 30px;
+            border-radius: 16px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            transform: translateY(0);
+            animation: containerAppear 0.5s ease-out;
+        }
+
+        @keyframes containerAppear {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .progress {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 30px;
+            position: relative;
+        }
+
+        .progress::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: #e0e0e0;
+            transform: translateY(-50%);
+            z-index: 1;
+        }
+
+        .step-circle {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: white;
+            border: 2px solid #e0e0e0;
+            font-weight: bold;
+            position: relative;
+            z-index: 2;
+            transition: all 0.3s ease;
+        }
+
+        .step-circle.active {
+            border-color: #92b2d7;
+            background: #32336c;
+            color: white;
+            transform: scale(1.1);
+        }
+
+        .step {
+            display: none;
+            opacity: 0;
+            transform: translateX(20px);
+        }
+
+        .step.active {
+            display: block;
+            animation: slideIn 0.5s ease forwards;
+        }
+
+        @keyframes slideIn {
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        input, select {
+            width: 100%;
+            padding: 12px;
+            margin: 8px 0 20px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: border-color 0.3s ease;
+        }
+
+        input:focus, select:focus {
+            outline: none;
+            border-color: #007bff;
+            box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1);
+        }
+
+        .buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
+        }
+
+        button {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+        }
+
+        #prev {
+            background: #f0f0f0;
+            color: #666;
+        }
+
+        #prev:hover {
+            background: #e0e0e0;
+        }
+
+        #prev:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .next {
+            background: #32336c;
+            color: white;
+            box-shadow: 0 4px 6px rgba(0, 123, 255, 0.1);
+        }
+
+        .next:hover {
+            background: #0056b3;
+            box-shadow: 0 6px 8px rgba(0, 123, 255, 0.2);
+        }
+
+        .next:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        h2 {
+            color: #2c3e50;
+            margin-bottom: 24px;
+        }
+
+        label {
+            font-weight: 500;
+            color: #4a5568;
+        }
+
+        #step3 p {
+            padding: 8px;
+            background: #f8f9fa;
+            border-radius: 6px;
+            margin: 8px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="progress">
+            <div class="step-circle active">1</div>
+            <div class="step-circle">2</div>
+            <div class="step-circle">3</div>
+        </div>
+        
+        <div class="step active" id="step1">
+            <h2>Current Service Information</h2>
+            <label>Current Provider:</label>
+            <select id="provider">
+                <option value="">Select Provider</option>
+                <option value="Mobi-comm">Mobi-comm</option>
+            </select>
+            <label>Phone Number:</label>
+            <input type="tel" id="phone" placeholder="Enter your phone number">
+        </div>
+
+        <div class="step" id="step2">
+            <h2>Personal Information</h2>
+            <label>Full Name:</label>
+            <input type="text" id="name" placeholder="Enter your full name">
+            <label>Email:</label>
+            <input type="email" id="email" placeholder="Enter your email">
+        </div>
+
+        <div class="step" id="step3">
+            <h2>Confirm Switch</h2>
+            <p><strong>Current Provider:</strong> <span id="summaryProvider"></span></p>
+            <p><strong>Phone Number:</strong> <span id="summaryPhone"></span></p>
+            <p><strong>Name:</strong> <span id="summaryName"></span></p>
+            <p><strong>Email:</strong> <span id="summaryEmail"></span></p>
+            <label>
+                <input type="checkbox" id="agree"> I agree to the terms and conditions.
+            </label>
+        </div>
+
+        <div class="buttons">
+            <button id="prev" onclick="prevStep()" disabled>Back</button>
+            <button id="next" onclick="nextStep()" class="next">Next</button>
+        </div>
+    </div>
+
+    <script>
+        let currentStep = 1;
+        
+        function showStep(step) {
+            document.querySelectorAll(".step").forEach((el, index) => {
+                el.classList.remove("active");
+            });
+            
+            document.querySelectorAll(".step-circle").forEach((el, index) => {
+                el.classList.toggle("active", index + 1 <= step);
+            });
+            
+            setTimeout(() => {
+                document.querySelector(`#step${step}`).classList.add("active");
+            }, 50);
+            
+            document.getElementById("prev").disabled = step === 1;
+            document.getElementById("next").textContent = step === 3 ? "Submit" : "Next";
+        }
+
+        function nextStep() {
+            if (currentStep === 2) {
+                document.getElementById("summaryProvider").textContent = document.getElementById("provider").value;
+                document.getElementById("summaryPhone").textContent = document.getElementById("phone").value;
+                document.getElementById("summaryName").textContent = document.getElementById("name").value;
+                document.getElementById("summaryEmail").textContent = document.getElementById("email").value;
+            }
+            if (currentStep === 3) {
+                if (!document.getElementById("agree").checked) {
+                    alert("You must agree to the terms.");
+                    return;
+                }
+                alert("Service switch initiated!");
+                return;
+            }
+            currentStep++;
+            showStep(currentStep);
+        }
+
+        function prevStep() {
+            currentStep--;
+            showStep(currentStep);
+        }
+    </script>
+</body>
+</html>
